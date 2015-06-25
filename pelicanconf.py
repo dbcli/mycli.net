@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Amjith Ramanujam'
-SITENAME = u'mycli.net'
+SITENAME = u'mycli'
 SITEURL = 'http://mycli.net'
 
 PATH = 'content'
