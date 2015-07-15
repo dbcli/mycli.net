@@ -46,5 +46,6 @@ STATIC_PATHS = {'images', 'extra/CNAME'}
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 THEME = 'theme/notmyidea'
+#THEME = 'blueidea'
 
 GOOGLE_ANALYTICS = 'UA-64493707-1'
