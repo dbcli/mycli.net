@@ -27,6 +27,11 @@ AUTHOR_FEED_RSS = None
 LINKS = (('pgcli', 'http://pgcli.com/'),
         )
 
+# Sponsors
+SPONSORS = (('jweiland', 'theme/images/100x200.png'),
+            ('Tech Blue Software', 'theme/images/100x200.png'),
+            )
+
 # Social widget
 SOCIAL = (('twitter', 'http://twitter.com/amjithr'),
           ('github', 'http://github.com/dbcli/mycli'),

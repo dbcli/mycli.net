@@ -51,6 +51,18 @@
         {% block content %}
         {% endblock %}
         <section id="extras" class="body">
+        {% if SPONSORS %}
+                <div class="sponsors">
+                        <h2>Sponsors</h2>
+                        <ul>
+                        {% for name, link in SPONSORS %}
+                            <img src="{{ link }}">
+                        {% endfor %}
+                        </ul>
+                </div><!-- /.sponsors -->
+        {% endif %}
+        </section>
+        <section id="extras" class="body">
         {% if LINKS %}
                 <div class="blogroll">
                         <h2>blogroll</h2>
