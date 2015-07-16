@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Faq</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="http://mycli.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mycli Atom Feed" />
+        <link href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mycli RSS Feed" />
+        <script type="text/javascript">
+            /* <![CDATA[ */
+        (function() {
+         var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+         s.type = 'text/javascript';
+         s.async = true;
+         s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+         t.parentNode.insertBefore(s, t);
+         })();
+/* ]]> */</script>
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">mycli </a></h1>
+                <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://github.com/dbcli/pgcli"></a>
+                <script data-gratipay-username="amjith" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
+                <nav><ul>
+                    <li><a href="./index">mycli</a></li>
+                    <li><a href="./install">Install</a></li>
+                    <li><a href="./screenshots">Screenshots</a></li>
+                    <li><a href="./docs">Docs</a></li>
+                    <li class="active"><a href="./faq">Faq</a></li>
+                    <li><a href="./sponsors">Sponsors</a></li>
+                    <li><a href="./about">About</a></li>
+                    <li><a href="./develop">Development</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Faq</h1>
+    
+    <ol>
+<li>
+<p><strong>How did it all begin?</strong></p>
+<p>Earlier this year I wrote <a href="http://pgcli.com">pgcli</a> to scratch my own itch.
+I realized that most of the work that went into that project was not
+specific to Postgres database. I received a few requests from MySQL users
+requesting a MySQL equivalent of pgcli. I kept procrastinating for a few
+months and finally decided to launch a kickstarter campaign to fund the
+development time. That's this project came into existence. But if you'd
+like to know why I bothered to write a auto-completing repl with syntax
+highlighting, here's the reason:</p>
+<p>I'm a huge fan of CLIs. Especially REPLs. When I first encountered
+<a href="http://www.bpython-interpreter.org/">BPython</a>, I fell in love with it.
+BPython is a Python REPL that has auto-completion, syntax-highlighting and
+displays the docstring of functions as you type. Once you get used to that
+level of pampering, all other REPLs start to look like <a href="http://en.wikipedia.org/wiki/Computer_terminal#Dumb_terminals">Dumb
+Terminals</a>. </p>
+<p>When I started using psql for interacting with my Postgres database, I
+yearned for a BPython equivalent for psql. </p>
+<p>One fine day I got a twitter DM from <a href="https://github.com/jonathanslenders">Jonathan
+Slenders</a> asking me if I'd be
+interested in trying a new Python library that he's working on called
+<a href="https://github.com/jonathanslenders/python-prompt-toolkit">Python-Prompt-Toolkit</a>.
+This library provided a way to write CLIs without having to deal with
+ncurses and had the requisite tools for doing auto-completion and
+syntax-highlighting. So I jumped at the opportunity to try it out. After I
+got myself familiarized, I started writing pgcli to scratch my own itch. </p>
+<p>So this app exists because Jonathan was kind enough to request my feedback. </p>
+</li>
+<li>
+<p><strong>Does mycli work on Windows?</strong></p>
+<p>Yes! I have personally tried it on Windows and it does work. But the
+unit-tests are not run on a Windows environemnt. So if things break please
+<a href="https://github.com/dbcli/mycli/issues">report</a> them and I'll fix it asap.</p>
+</li>
+<li>
+<p><strong>Will there be an equivalent of this for Sqlite/Postgresql?</strong></p>
+<p>There is already an equivalent for Postgres. Checkout: <a href="http://pgcli.com">http://pgcli.com</a></p>
+<p>I don't have time to write an SQLite version. But if you're
+interested in doing it, I'd be happy to help you. Please get in <a href="./about">touch</a>.</p>
+</li>
+<li>
+<p><strong>How is the Smart Completion implemented?</strong></p>
+<p>Smart Completion uses the <a href="https://pypi.python.org/pypi/sqlparse">Sqlparse</a>
+library to tokenize the sql statement and uses heuristics to suggest
+context sensitive completion. It can handle nearly 80% of scenarios (in my
+testing). But there are still some corner cases where it will suggest only
+keywords when you might be looking for columns or tables. So it could get
+frustrating when it refuses to provide completions from a different
+category. In those scenarios, I tend to turn it off (using the F2 key) and
+switch to Naive completion which suggests words from all categories.</p>
+<p>Writing auto-completion libraries are inherently difficult since you're
+dealing with incomplete input. Since the parser can't work effectively in
+many scenarios, the code has to compensate for those corner cases. Which
+resulted in a lot of testing and patching those cases with one off
+'if-conditions'. </p>
+</li>
+<li>
+<p><strong>What is the license for mycli?</strong></p>
+<p>BSD 3-clause license. https://github.com/dbcli/mycli/blob/master/LICENSE.txt</p>
+</li>
+<li>
+<p><strong>How can I get support for pgcli?</strong></p>
+<p>There is a <a href="https://groups.google.com/forum/#!forum/mycli-users">mailing list</a> 
+and <a href="https://gitter.im/dbcli/mycli">Gitter</a> chat. We also track our bugs
+and feature requests in <a href="https://github.com/dbcli/mycli/issues">Github Issues</a> for this project. </p>
+</li>
+<li>
+<p><strong>I found a bug, what do I do?</strong> </p>
+<p>Whoopsie Daisies! I'm sorry you encountered a bug. Please file a bug on
+<a href="https://github.com/dbcli/mycli/issues">Github Issues</a> for this project. I'll fix it asap.</p>
+</li>
+<li>
+<p><strong>I have a feature request, what do I do?</strong> </p>
+<p>Sweet! Open a new item on <a href="https://github.com/dbcli/mycli/issues">Github Issues</a>. Alternatively, you can take a stab
+at implementing the new feature yourself. If you'd like some guidance, I'm
+just an email away. Don't hesitate to <a href="./about">contact</a> me.</p>
+</li>
+<li>
+<p><strong>I want to contribute to this project, how do I do that?</strong> </p>
+<p>Awesome! I thought you'd never ask. Here's a <a href="./develop">developer
+guide</a> that provides basic info on getting
+started with local development. You're also welcome to <a href="./about">contact</a> me, if you
+need some help getting started.</p>
+</li>
+<li>
+<p><strong>What's your favorite cuisine?</strong> </p>
+<p>What's the point in having an FAQ if I don't include at least one frequently
+asked question. So here it goes: </p>
+<p>South Indian, North Indian, Thai, Mexican, Mediterranean, Ethiopian,
+Japanese, Chinese, Sandwiches, Salads. In that order. </p>
+</li>
+</ol>
+</section>
+        <section id="extras" class="body">
+                <div class="sponsors">
+                        <h2>Sponsors</h2>
+                        <ul>
+                            <img src="theme/images/100x200.png">
+                            <img src="theme/images/100x200.png">
+                        </ul>
+                </div><!-- /.sponsors -->
+        </section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://pgcli.com/">pgcli</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://mycli.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="http://twitter.com/amjithr">twitter</a></li>
+                            <li><a href="http://github.com/dbcli/mycli">github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-64493707-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
