@@ -54,11 +54,9 @@
         {% if SPONSORS %}
                 <div class="sponsors">
                         <h2>Sponsors</h2>
-                        <ul>
-                        {% for name, link in SPONSORS %}
-                            <img src="{{ link }}">
+                        {% for name, link, image in SPONSORS %}
+                        <a href={{ link }}><img src="{{ image }}" alt="{{ name }}" width=200 height=100></a>
                         {% endfor %}
-                        </ul>
                 </div><!-- /.sponsors -->
         {% endif %}
         </section>
