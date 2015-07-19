@@ -297,16 +297,6 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 	
 	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 185px;}
 
-	/* Sponsors */
-	/*#extras .sponsors {
-		margin:0 auto;
-    width: 300px;
-	}*/
-
-  #extras .sponsors {
-    float: center;
-  }
-	
 	#extras .blogroll li {float: left; margin: 0 20px 0 0; width: 185px;}
 	
 	/* Social */
