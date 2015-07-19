@@ -35,13 +35,99 @@
                     <li><a href="./faq">Faq</a></li>
                     <li><a href="./sponsors">Sponsors</a></li>
                     <li><a href="./about">About</a></li>
-                    <li class="active"><a href="./develop">Development</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
     <h1 class="entry-title">Development</h1>
     
-    
+    <p>This is a guide for developers who would like to contribute to this project.</p>
+<p>First of all I'm flattered that you're interested in contributing. Second, my
+heart felt thanks for contributing.</p>
+<h2>GitHub Workflow</h2>
+<p>The source code is hosted by Github: <a href="https://github.com/dbcli/mycli">https://github.com/dbcli/mycli</a></p>
+<p>If you already know how to fork a project and send pull requests to it using
+github, you can safely skip this section.</p>
+<p>Github help has a pretty detailed documentation on how to use Github to fork
+and send pull requests to a repository.
+<a href="https://help.github.com/articles/fork-a-repo/">https://help.github.com/articles/fork-a-repo/</a></p>
+<p>The basic steps are:</p>
+<ol>
+<li>
+<p>Fork the mycli project via the github UI. </p>
+</li>
+<li>
+<p>Clone your fork to your local machine. </p>
+</li>
+</ol>
+<div class="highlight"><pre>    git clone git@github.com:&lt;your-username&gt;/mycli.git
+</pre></div>
+
+
+<ol>
+<li>Setup a remote called upstream that points to the original mycli repo. This
+   is to keep your fork in sync with the mainline.</li>
+</ol>
+<div class="highlight"><pre>    git remote add upstream git@github.com:dbcli/mycli.git
+</pre></div>
+
+
+<ol>
+<li>Make the necessary changes in your local machine. Commit and push to your
+   fork. </li>
+</ol>
+<div class="highlight"><pre>       $ git commit 
+
+       $ git push origin 
+</pre></div>
+
+
+<ol>
+<li>
+<p>Create a pull request from your fork to the mainline repo using Github UI. </p>
+</li>
+<li>
+<p>Sync with the main mycli repo. </p>
+</li>
+</ol>
+<div class="highlight"><pre>       $ git pull upstream master   # Pull from the main repo to local copy.
+
+       $ git push origin master     # Pushes from local copy to your fork.
+</pre></div>
+
+
+<h2>Local Development Setup</h2>
+<p>It is highly recommended to use virtualenv for development. If you don't know
+what a virtualenv is, this <a href="http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtual-environments">guide</a>
+will help you get started.</p>
+<p>Create a virtualenv (let's call it mycli-dev). Once the virtualenv is activated
+<code>cd</code> into the local clone of mycli folder and install mycli using pip as
+follows:</p>
+<div class="highlight"><pre>    $ pip install --editable .
+</pre></div>
+
+
+<p>This will install the necessary dependencies as well as install mycli from the
+working folder into the virtualenv. By installing it using <code>pip install -e</code>
+we've linked the mycli installation with the working copy. So any changes made
+to the code is immediately available in the installed version of mycli. This
+makes it easy to change something in the code, launch mycli and check the
+effects of your change. </p>
+<h2>Tests</h2>
+<p>The tests are located in the <code>tests</code> directory in the mycli project root.</p>
+<p>Tests are written using <code>py.test</code> testing framework. Install <code>py.test</code> by
+using <code>pip install pytest</code> in the virtualenv. Then execute the tests by
+calling <code>py.test</code> from the root of the project folder. </p>
+<p>A test runner called <code>tox</code> is used to run the tests in Python 2.6, Python 2.7
+and Python 3.3. You can do <code>pip install tox</code> and call <code>tox</code> from the
+project root to run the tests in all 3 python versions.</p>
+<p>If you'd like to run just one of the test files (say test_sqlcompletion.py)
+then <code>cd</code> into the tests folder and execute <code>py.test test_sqlcompletion.py</code>
+to run just the tests from that file or <code>tox test_sqlcompletion.py</code> to run
+the tests in that file in all three Python versions.</p>
+<p>The tests are also run via <a href="https://travis-ci.org/dbcli/mycli">Travis CI</a> when
+a new Pull Request is opened. If you have a change and it happens to be failing
+on one of the Python version (typically on Python 3), don't worry about it.
+Just open a pull request and I can help you get it fixed before merging.</p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
