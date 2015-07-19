@@ -10,6 +10,7 @@
         {% if FEED_ALL_RSS %}
         <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
         {% endif %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript">
             /* <![CDATA[ */
         (function() {
@@ -51,16 +52,6 @@
         {% block content %}
         {% endblock %}
         <section id="extras" class="body">
-        {% if SPONSORS %}
-                <div class="sponsors">
-                        <h2>Sponsors</h2>
-                        {% for name, link, image in SPONSORS %}
-                        <a href={{ link }}><img src="{{ image }}" alt="{{ name }}" width=200 height=100></a>
-                        {% endfor %}
-                </div><!-- /.sponsors -->
-        {% endif %}
-        </section>
-        <section id="extras" class="body">
         {% if LINKS %}
                 <div class="blogroll">
                         <h2>blogroll</h2>
@@ -89,8 +80,19 @@
                 </div><!-- /.social -->
         {% endif %}
         </section><!-- /#extras -->
+        <section id="extras" class="body">
+        {% if SPONSORS %}
+                <div class="sponsors">
+                        <h2>Sponsors</h2>
+                        {% for name, link, image, float in SPONSORS %}
+                        <a href={{ link }}><img src="{{ image }}" alt="{{ name }}" width=200 height=100 style="float: {{ float }};"></a>
+                        {% endfor %}
+                </div><!-- /.sponsors -->
+        {% endif %}
+        </section>
 
 {% include 'analytics.html' %}
 {% include 'disqus_script.html' %}
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script-min.js"></script>
 </body>
 </html>
