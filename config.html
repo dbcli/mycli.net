@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Docs</title>
+        <title>Configuration</title>
         <link rel="stylesheet" href="./theme/css/main.css" />
         <link href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mycli RSS Feed" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -31,43 +31,66 @@
                     <li><a href="./index">mycli</a></li>
                     <li><a href="./install">Install</a></li>
                     <li><a href="./screenshots">Screenshots</a></li>
-                    <li class="active"><a href="./docs">Docs</a></li>
+                    <li><a href="./docs">Docs</a></li>
                     <li><a href="./faq">Faq</a></li>
                     <li><a href="./sponsors">Sponsors</a></li>
                     <li><a href="./about">About</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
-    <h1 class="entry-title">Docs</h1>
+    <h1 class="entry-title">Configuration</h1>
     
-    <h2><a name="auto-completion"></a>AutoCompletion</h2>
-<p>Auto-completion kicks in as soon as you start typing. The suggestions are context sensitive so the REPL will only suggest relevant items.</p>
-<p><a href="./completion">Read More...</a></p>
-<h2><a name="config"></a>Config</h2>
-<p>The config file for mycli is located in the home folder (~/.myclirc). The config file can toggle certain features such as syntax_style, prompt, key_bindings, log_level etc.</p>
-<p><a href="./config">Read More...</a></p>
-<h2><a name="colors"></a>Colors</h2>
-<p>Syntax highlighting has many different themes. These themes can be changed via the config file. Here is a gallery of various syntax themes: <a href="{filename}/pages/syntax.md">Gallery</a></p>
-<h2><a name="keybindings"></a>Keybindings</h2>
-<p>There are two types of keybindings available. Emacs mode and Vi mode. The keybindings can be changed via the config file. Emacs mode is the default. When Vi mode is enabled you can use modal editing features offered by Vi in the REPL command line.</p>
-<h2><a name="favorites"></a>Favorite Queries</h2>
-<p>Frequently used queries can be saved as favorite queries with a name. For a quick introduction launch mycli and type <code>\f</code> that will list all available favorite queries or print a simple example of how to use it if the list is empty. </p>
-<p><a href="./favorites">Find out more...</a></p>
-<h2><a name="logging"></a>Logging</h2>
-<p>There are two types of logging. </p>
-<ol>
-<li>
-<p>Operational logs are on by default and stored in the home folder as ~/.mycli.log. This is useful for debugging mycli. It is useful if you're developing mycli, but not so useful for end users.</p>
-</li>
-<li>
-<p>Audit logs can be optionally turned on using a command line option <code>-l</code>. This will log every command and it's output with a timestamp. This is useful for keeping track of every command and it's output during a session. </p>
-</li>
-</ol>
-<p><a href="./logging">Read More..</a></p>
-<h2>Open Editor</h2>
-<h2>Multi-line mode</h2>
-<h2>Reverse Search</h2>
-<h2>Grid Type</h2>
+    <p>The configuration file is located at <code>~/.myclirc</code> which is a hidden file in
+your home folder in Linux and OS X. On Windows it is located at <code>C:\.myclirc</code>.</p>
+<p>The config file is created when mycli is launched for the very first time.
+Updates to that file are not overwritten by subsequent launches of mycli or
+updating the version of mycli.</p>
+<p>Sample config file:</p>
+<div class="highlight"><pre><span class="k">[main]</span>
+
+<span class="c1"># Enables context sensitive auto-completion. If this is disabled the all</span>
+<span class="c1"># possible completions will be listed.</span>
+<span class="na">smart_completion</span> <span class="o">=</span> <span class="s">True</span>
+
+<span class="c1"># Multi-line mode allows breaking up the sql statements into multiple lines. If</span>
+<span class="c1"># this is set to True, then the end of the statements must have a semi-colon.</span>
+<span class="c1"># If this is set to False then sql statements can&#39;t be split into multiple</span>
+<span class="c1"># lines. End of line (return) is considered as the end of the statement.</span>
+<span class="na">multi_line</span> <span class="o">=</span> <span class="s">False</span>
+
+<span class="c1"># log_file location.</span>
+<span class="na">log_file</span> <span class="o">=</span> <span class="s">~/.mycli.log</span>
+
+<span class="c1"># Default log level. Possible values: &quot;CRITICAL&quot;, &quot;ERROR&quot;, &quot;WARNING&quot;, &quot;INFO&quot;</span>
+<span class="c1"># and &quot;DEBUG&quot;.</span>
+<span class="na">log_level</span> <span class="o">=</span> <span class="s">INFO</span>
+
+<span class="c1"># Timing of sql statments and table rendering.</span>
+<span class="na">timing</span> <span class="o">=</span> <span class="s">True</span>
+
+<span class="c1"># Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,</span>
+<span class="c1"># orgtbl, rst, mediawiki, html, latex, latex_booktabs.</span>
+<span class="c1"># Recommended: psql, fancy_grid and grid.</span>
+<span class="na">table_format</span> <span class="o">=</span> <span class="s">psql</span>
+
+<span class="c1"># Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,</span>
+<span class="c1"># native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,</span>
+<span class="c1"># colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity</span>
+<span class="na">syntax_style</span> <span class="o">=</span> <span class="s">default</span>
+
+<span class="c1"># Keybindings: Possible values: emacs, vi</span>
+<span class="na">key_bindings</span> <span class="o">=</span> <span class="s">emacs</span>
+
+<span class="c1"># MySQL prompt</span>
+<span class="c1"># \t - Product type (Percona, MySQL, Mariadb)</span>
+<span class="c1"># \u - Username</span>
+<span class="c1"># \h - Hostname of the server</span>
+<span class="c1"># \d - Database name</span>
+<span class="na">prompt</span> <span class="o">=</span> <span class="s">&#39;\t \u@\h:\d&gt; &#39;</span>
+</pre></div>
+
+
+<p>All the options are thoroughly documented. </p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
