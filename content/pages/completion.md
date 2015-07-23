@@ -14,28 +14,28 @@ I've decided to call the context sensitive suggestion smart completion. Here are
 
 Only table names from the current database are suggested after the FROM keyword.
 
-<img src="images/docs/table2.png" width=750 align="center">
+<img src="images/docs/table.png" width=750 align="center">
 
 ### Column
 
 Column names from the current table are automatically suggested after the WHERE clause.
 
-<img src="images/docs/column2.png" width=750 align="center">
+<img src="images/docs/column.png" width=750 align="center">
 
 ### Insert 
 
 Insert statement will auto-suggest the column names.
 
-<img src="images/docs/insert2.png" width=750 align="center">
+<img src="images/docs/insert.png" width=750 align="center">
 
 ### Alias
 
 Aliases in the query are automatically resolved and the columns from the table aliases are suggested.
 
-<img src="images/docs/alias2.png" width=750 align="center">
+<img src="images/docs/alias.png" width=750 align="center">
 
 ## Fuzzy Match
 
 The completions are matched using a fuzzy algorithm. For example typing 'djmi' will match the table 'django_migrations' because 'djmi' has parts of matching substrings. Here's an example:
 
-<img src="images/docs/fuzzy2.png" width=750 align="center">
+<img src="images/docs/fuzzy.png" width=750 align="center">
