@@ -5,6 +5,14 @@ status: hidden
 Favorite Queries are a way to save frequently used queries
 with a short name.
 
+`\f` - list all favorite queries.
+
+`\f <name>` - Invoke a favorite query by its name.
+
+`\fs <name> <query>` - Save a new favorite query called 'name'.
+
+`\fd <name>` - Delete an existing favorite query by its name.
+
 Examples:
 
 ```
