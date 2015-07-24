@@ -47,7 +47,7 @@
 <p>The config file for mycli is located in the home folder (~/.myclirc). The config file can toggle certain features such as syntax_style, prompt, key_bindings, log_level etc.</p>
 <p><a href="./config">Read More...</a></p>
 <h2><a name="colors"></a>Colors</h2>
-<p>Syntax highlighting has many different themes. These themes can be changed via the config file. Here is a gallery of various syntax themes: <a href="{filename}/pages/syntax.md">Gallery</a></p>
+<p>Syntax highlighting has many different themes. These themes can be changed via the config file. Here is a gallery of various syntax themes: <a href="./syntax">Gallery</a></p>
 <h2><a name="keybindings"></a>Keybindings</h2>
 <p>There are two types of keybindings available. Emacs mode and Vi mode. The keybindings can be changed via the config file. Emacs mode is the default. When Vi mode is enabled you can use modal editing features offered by Vi in the REPL command line.</p>
 <h2><a name="favorites"></a>Favorite Queries</h2>
@@ -68,8 +68,19 @@
 <p>Using the <code>\e</code> command in the REPL, it is possible to launch the default editor to edit the current query. </p>
 <p><a href="{filename}/page/editor.md">More Details...</a></p>
 <h2>Multi-line mode</h2>
-<h2>Reverse Search</h2>
-<h2>Grid Type</h2>
+<p>The default behavior of <code>mycli</code> is to execute a query as soon as the enter key
+is pressed. This might come as a surprise to seasoned MySQL users who always
+enter a semi-colon to denote the end of the query. </p>
+<p>To emulate the original MySQL behavior you can enable the multi-line mode which
+will require a semi-colon to be present at the end of the line. This enables
+writing multi-line queries if they are really long. You can enable multi-line
+mode by pressing <F3> key or set it permanently via the
+<a href="./config">config</a> file. </p>
+<h2>History &amp; Search</h2>
+<p>MyCli keeps track of the queries entered in the repl. Up/Down arrow can be used to navigate the history. </p>
+<p>Pressing <C-r> will enable incremental history search. So press <C-r> and then
+start typing your search term to see the queries narrowed down. You can cycle
+through the matches by pressing <C-r> again.</p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
