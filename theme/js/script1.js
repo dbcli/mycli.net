@@ -21,22 +21,14 @@
 
   // Change the image to .gif when clicked and vice versa.
   $('figure').on('click', function () {
-    var self = $(this),
+    var self = $(this)
 
-    $img = self.children('img'),
-    $imgSrc = $img.attr('src'),
-    $imgAlt = $img.attr('data-alt'),
-    $imgExt = $imgAlt.split('.').pop()
+    var $img = self.children('img')
+    var $imgSrc = $img.attr('src')
+    var $imgAlt = $img.attr('data-alt')
 
-    if ($imgExt === 'gif') {
-      $img.attr('src', $img.data('alt')).attr('data-alt', $imgSrc)
-    } else {
-      $img.attr('src', $imgAlt).attr('data-alt', $img.data('alt'))
-    }
-
-    // Add play class to help with the styling.
-    self.toggleClass('play')
-
+    $img.attr('src', $imgAlt).attr('data-alt', $imgSrc)
+    //$img.attr('src', $imgAlt).attr('data-alt', $img.data('alt'))
   })
 
 }) (jQuery)
