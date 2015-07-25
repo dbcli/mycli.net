@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Auto-Completion</title>
+        <title>Keybindings</title>
         <link rel="stylesheet" href="./theme/css/main.css" />
         <link href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mycli RSS Feed" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -38,27 +38,11 @@
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
-    <h1 class="entry-title">Auto-Completion</h1>
+    <h1 class="entry-title">Keybindings</h1>
     
-    <h1>AutoCompletion</h1>
-<p>Auto-completion is on by default. The REPL will pop up a suggestion menu as soon as you start typing. The suggestions are context sensitive based on the position of the cursor. eg: Only tables are suggested after the FROM keyword, only column names are suggested after the WHERE clause.</p>
-<h2>Smart Completion</h2>
-<p>I call this context sensitive suggestion as smart completion. Here are a few examples of smart completion.</p>
-<h3>Table</h3>
-<p>Only table names from the current database are suggested after the FROM keyword.</p>
-<p><img src="images/docs/table.png" width=750 align="center"></p>
-<h3>Column</h3>
-<p>Column names from the current table are suggested after the WHERE clause.</p>
-<p><img src="images/docs/column.png" width=750 align="center"></p>
-<h3>Insert</h3>
-<p>Insert statement will suggest the column names.</p>
-<p><img src="images/docs/insert.png" width=750 align="center"></p>
-<h3>Alias</h3>
-<p>Aliases in the query are resolved and the columns from the table aliases are suggested.</p>
-<p><img src="images/docs/alias.png" width=750 align="center"></p>
-<h2>Fuzzy Match</h2>
-<p>The completions are matched using a <a href="http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python">fuzzy algorithm</a>. For example typing 'djmi' will match the table 'django_migrations' because 'djmi' has parts of matching substrings. Here's an example:</p>
-<p><img src="images/docs/fuzzy.png" width=750 align="center"></p>
+    <p>There are two types of keybindings available. Emacs mode and Vi mode. The keybindings can be changed via the config file (~/.myclirc) or toggled via F4 key.</p>
+<p>Emacs mode is the default. In emacs mode you can type Ctrl-a to go to the beginning of a line and Ctrl-e to go to the end of a line and many more. </p>
+<p>When Vi mode is enabled you can use modal editing features offered by Vi in the REPL command line.</p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">

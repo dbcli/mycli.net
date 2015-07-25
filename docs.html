@@ -40,47 +40,37 @@
 <section id="content" class="body">
     <h1 class="entry-title">Docs</h1>
     
-    <h2><a name="auto-completion"></a>AutoCompletion</h2>
+    <h2><a href="./completion">AutoCompletion</a><a name="completion"></a></h2>
 <p>Auto-completion kicks in as soon as you start typing. The suggestions are context sensitive so the REPL will only suggest relevant items.</p>
 <p><a href="./completion">Read More...</a></p>
-<h2><a name="config"></a>Config</h2>
-<p>The config file for mycli is located in the home folder (~/.myclirc). The config file can toggle certain features such as syntax_style, prompt, key_bindings, log_level etc.</p>
+<h2><a href="./config">Config</a><a name="config"></a></h2>
+<p>The config file for mycli is located in the home folder (~/.myclirc). </p>
 <p><a href="./config">Read More...</a></p>
-<h2><a name="colors"></a>Colors</h2>
-<p>Syntax highlighting has many different themes. These themes can be changed via the config file. Here is a gallery of various syntax themes: <a href="./syntax">Gallery</a></p>
-<h2><a name="keybindings"></a>Keybindings</h2>
-<p>There are two types of keybindings available. Emacs mode and Vi mode. The keybindings can be changed via the config file. Emacs mode is the default. When Vi mode is enabled you can use modal editing features offered by Vi in the REPL command line.</p>
-<h2><a name="favorites"></a>Favorite Queries</h2>
-<p>Frequently used queries can be saved as favorite queries with a name. For a quick introduction launch mycli and type <code>\f</code> that will list all available favorite queries or print a simple example of how to use it if the list is empty. </p>
-<p><a href="./favorites">Find out more...</a></p>
-<h2><a name="logging"></a>Logging</h2>
-<p>There are two types of logging. </p>
-<ol>
-<li>
-<p>Operational logs are on by default and stored in the home folder as ~/.mycli.log. This is useful for debugging mycli. It is useful if you're developing mycli, but not so useful for end users.</p>
-</li>
-<li>
-<p>Audit logs can be optionally turned on using a command line option <code>-l</code>. This will log every command and it's output with a timestamp. This is useful for keeping track of every command and it's output during a session. </p>
-</li>
-</ol>
+<h2><a href="./syntax">Colors</a><a name="colors"></a></h2>
+<p>Syntax highlighting has plent of themes that can be changed via the <a href="./config">config</a> file. </p>
+<p>Showcase of various color themes: </p>
+<p><a href="./syntax">Gallery</a></p>
+<h2><a href="./keybindings">Keybindings</a><a name="keybindings"></a></h2>
+<p>There are two types of keybindings available. Emacs mode and Vi mode. The keybindings can be changed via the config file (~/.myclirc) or toggled via F4 key.</p>
+<p><a href="./keybindings">Read more...</a></p>
+<h2><a href="./favorites">Favorite Queries</a><a name="favorites"></a></h2>
+<p>Frequently used queries can be saved as favorite queries with a name. </p>
+<p><a href="./favorites">Read More...</a></p>
+<h2><a href="./logging">Logging</a><a name="logging"></a></h2>
+<p>Default log file is located at <code>~/.mycli.log</code>. There is additional user friendly audit logging. </p>
 <p><a href="./logging">Read More..</a></p>
-<h2>Open Editor</h2>
-<p>Using the <code>\e</code> command in the REPL, it is possible to launch the default editor to edit the current query. </p>
-<p><a href="{filename}/page/editor.md">More Details...</a></p>
-<h2>Multi-line mode</h2>
-<p>The default behavior of <code>mycli</code> is to execute a query as soon as the enter key
-is pressed. This might come as a surprise to seasoned MySQL users who always
-enter a semi-colon to denote the end of the query. </p>
-<p>To emulate the original MySQL behavior you can enable the multi-line mode which
-will require a semi-colon to be present at the end of the line. This enables
-writing multi-line queries if they are really long. You can enable multi-line
-mode by pressing <F3> key or set it permanently via the
-<a href="./config">config</a> file. </p>
-<h2>History &amp; Search</h2>
+<h2><a href="./editor">Open Editor</a><a name="editor"></a></h2>
+<p>Use the <code>\e</code> command in the prompt, to launch the default editor.</p>
+<p><a href="./editor">Read More...</a></p>
+<h2><a href="./multi-line">Multi-line mode</a><a name="multi-line"></a></h2>
+<p><code>Mycli</code> doesn't expect a semi-colon at the end of a line to execute the query. But this can be changed by settign the multi-line mode.</p>
+<p><a href="./multi-line">Read more...</a></p>
+<h2><a href="./history">History &amp; Search</a><a name="history"></a></h2>
 <p>MyCli keeps track of the queries entered in the repl. Up/Down arrow can be used to navigate the history. </p>
-<p>Pressing <C-r> will enable incremental history search. So press <C-r> and then
+<p>Pressing <code>&lt;C-r&gt;</code> will enable incremental history search. So press <code>&lt;C-r&gt;</code> and then
 start typing your search term to see the queries narrowed down. You can cycle
-through the matches by pressing <C-r> again.</p>
+through the matches by pressing <code>&lt;C-r&gt;</code> again.</p>
+<p><a href="./history">Read more...</a></p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
