@@ -3,7 +3,7 @@ Slug: config
 status: hidden
 
 The configuration file is located at `~/.myclirc` which is a hidden file in
-your home folder in Linux and OS X. On Windows it is located at `C:\.myclirc`.
+your home folder in Linux and OS X. On Windows it is located at `C:\Users\<username>\.myclirc`.
 
 The config file is created when mycli is launched for the very first time.
 Updates to that file are not overwritten by subsequent launches of mycli or
