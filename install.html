@@ -45,15 +45,15 @@
 <p>Works well with unicode input/output.</p>
 <h1>Python Package:</h1>
 <p>If you already know how to install python packages, then you can do:</p>
-<div class="highlight"><pre><span class="nv">$ </span>pip install pgcli
+<p>You might need <code>sudo</code>. </p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install mycli
 
 or
 
-<span class="nv">$ </span>easy_install pgcli
+<span class="nv">$ </span>easy_install mycli
 </pre></div>
 
 
-<p>You might need <code>sudo</code>. </p>
 <h1>Mac OS X:</h1>
 <p>The easiest way install <code>mycli</code> in an OS X machine is to use <a href="http://brew.sh/">homebrew</a>.</p>
 <div class="highlight"><pre><span class="nv">$ </span>brew install mycli
@@ -61,13 +61,38 @@ or
 
 
 <h1>Linux:</h1>
-<p>Debian based systems (Debian, Ubuntu, Mint etc)</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install mycli
+<h3>Debian/Ubuntu Package:</h3>
+<p>The debian package for <code>mycli</code> is hosted on <a href="https://packagecloud.io/">packagecloud.io</a>.</p>
+<p>Add the gpg key for packagecloud for package verification.</p>
+<div class="highlight"><pre>    $ curl https://packagecloud.io/gpg.key | apt-key add -
 </pre></div>
 
 
-<p>For Redhat based systems (Fedora, Centos, RHEL etc)</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo yum install mycli
+<p>Install a package called apt-transport-https to make it possible for apt to fetch packages over https.</p>
+<div class="highlight"><pre>    $ apt-get install -y apt-transport-https
+</pre></div>
+
+
+<p>Add the mycli package repo to the apt source.</p>
+<div class="highlight"><pre>    $ sudo echo &quot;deb https://packagecloud.io/amjith/mycli/ubuntu/ trusty main&quot; &gt;&gt; /etc/apt/sources.list
+</pre></div>
+
+
+<p>Update and apt sources and install mycli.</p>
+<div class="highlight"><pre>    $ sudo apt-get update
+    $ sudo apt-get install mycli
+</pre></div>
+
+
+<p>Now <code>mycli</code> can be updagraded easily by using <code>sudo apt-get upgrade mycli</code>.</p>
+<h3>RHEL, Centos, Fedora:</h3>
+<p>I haven't built an RPM package for mycli yet. So please use <code>pip</code> to install <code>mycli</code>. You can install pip on your system using:</p>
+<div class="highlight"><pre>    $ sudo yum install python-pip
+</pre></div>
+
+
+<p>Once that is installed, you can install mycli as follows:</p>
+<div class="highlight"><pre>    $ sudo pip install mycli
 </pre></div>
 </section>
         <section id="extras" class="body">
