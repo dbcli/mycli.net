@@ -31,7 +31,7 @@ log_file = ~/.mycli.log
 # and "DEBUG".
 log_level = INFO
 
-# Timing of sql statments and table rendering.
+# Timing of sql statements and table rendering.
 timing = True
 
 # Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
