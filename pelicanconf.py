@@ -25,6 +25,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('pgcli', 'http://pgcli.com/'),
+         ('packagecloud', 'http://packagecloud.io/'),
         )
 
 # Sponsors
