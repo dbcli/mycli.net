@@ -4,6 +4,7 @@ ecdsa==0.13
 Fabric==1.10.2
 feedgenerator==1.7
 Jinja2==2.8
+Markdown==2.6.2
 MarkupSafe==0.23
 paramiko==1.15.3
 pelican==3.6.3
