@@ -24,6 +24,11 @@ smart_completion = True
 # lines. End of line (return) is considered as the end of the statement.
 multi_line = False
 
+# Destructive warning mode will alert you before executing a sql statement
+# that may cause harm to the database such as "drop table", "drop database"
+# or "shutdown".
+destructive_warning = True
+
 # log_file location.
 log_file = ~/.mycli.log
 
@@ -31,11 +36,15 @@ log_file = ~/.mycli.log
 # and "DEBUG".
 log_level = INFO
 
-# Timing of sql statements and table rendering.
+# Log every query and its results to a file. Enable this by uncommenting the
+# line below.
+# audit_log = ~/.mycli-audit.log
+
+# Timing of sql statments and table rendering.
 timing = True
 
 # Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
-# orgtbl, rst, mediawiki, html, latex, latex_booktabs.
+# orgtbl, rst, mediawiki, html, latex, latex_booktabs, tsv.
 # Recommended: psql, fancy_grid and grid.
 table_format = psql
 
@@ -44,15 +53,51 @@ table_format = psql
 # colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity
 syntax_style = default
 
-# Keybindings: Possible values: emacs, vi
+# Keybindings: Possible values: emacs, vi.
+# Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.
+# When Vi mode is enabled you can use modal editing features offered by Vi in the REPL.
 key_bindings = emacs
+
+# Enabling this option will show the suggestions in a wider menu. Thus more items are suggested.
+wider_completion_menu = False
 
 # MySQL prompt
 # \t - Product type (Percona, MySQL, Mariadb)
 # \u - Username
 # \h - Hostname of the server
 # \d - Database name
+# \n - Newline
 prompt = '\t \u@\h:\d> '
+
+# Custom colors for the completion menu, toolbar, etc.
+[colors]
+# Completion menus.
+Token.Menu.Completions.Completion.Current = 'bg:#00aaaa #000000'
+Token.Menu.Completions.Completion = 'bg:#008888 #ffffff'
+Token.Menu.Completions.MultiColumnMeta = 'bg:#aaffff #000000'
+Token.Menu.Completions.ProgressButton = 'bg:#003333'
+Token.Menu.Completions.ProgressBar = 'bg:#00aaaa'
+
+# Selected text.
+Token.SelectedText = '#ffffff bg:#6666aa'
+
+# Search matches. (reverse-i-search)
+Token.SearchMatch = '#ffffff bg:#4444aa'
+Token.SearchMatch.Current = '#ffffff bg:#44aa44'
+
+# The bottom toolbar.
+Token.Toolbar.Off = 'bg:#222222 #888888'
+Token.Toolbar.On = 'bg:#222222 #ffffff'
+
+# Search/arg/system toolbars.
+Token.Toolbar.Search = 'noinherit bold'
+Token.Toolbar.Search.Text = 'nobold'
+Token.Toolbar.System = 'noinherit bold'
+Token.Toolbar.Arg = 'noinherit bold'
+Token.Toolbar.Arg.Text = 'nobold'
+
+# Favorite queries.
+[favorite_queries]
 ```
 
 All the options are thoroughly documented. 
