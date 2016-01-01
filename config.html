@@ -6,17 +6,6 @@
         <link rel="stylesheet" href="./theme/css/main.css" />
         <link href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mycli RSS Feed" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript">
-            /* <![CDATA[ */
-        (function() {
-         var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-         s.type = 'text/javascript';
-         s.async = true;
-         s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-         t.parentNode.insertBefore(s, t);
-         })();
-/* ]]> */</script>
-
         <!--[if IE]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -25,8 +14,6 @@
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="./">mycli </a></h1>
-                <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://github.com/dbcli/pgcli"></a>
-                <script data-gratipay-username="amjith" data-gratipay-widget="button" src="//grtp.co/v1.js"></script>
                 <nav><ul>
                     <li><a href="./index">mycli</a></li>
                     <li><a href="./install">Install</a></li>
@@ -59,6 +46,11 @@ updating the version of mycli.</p>
 <span class="c1"># lines. End of line (return) is considered as the end of the statement.</span>
 <span class="na">multi_line</span> <span class="o">=</span> <span class="s">False</span>
 
+<span class="c1"># Destructive warning mode will alert you before executing a sql statement</span>
+<span class="c1"># that may cause harm to the database such as &quot;drop table&quot;, &quot;drop database&quot;</span>
+<span class="c1"># or &quot;shutdown&quot;.</span>
+<span class="na">destructive_warning</span> <span class="o">=</span> <span class="s">True</span>
+
 <span class="c1"># log_file location.</span>
 <span class="na">log_file</span> <span class="o">=</span> <span class="s">~/.mycli.log</span>
 
@@ -66,11 +58,15 @@ updating the version of mycli.</p>
 <span class="c1"># and &quot;DEBUG&quot;.</span>
 <span class="na">log_level</span> <span class="o">=</span> <span class="s">INFO</span>
 
-<span class="c1"># Timing of sql statements and table rendering.</span>
+<span class="c1"># Log every query and its results to a file. Enable this by uncommenting the</span>
+<span class="c1"># line below.</span>
+<span class="c1"># audit_log = ~/.mycli-audit.log</span>
+
+<span class="c1"># Timing of sql statments and table rendering.</span>
 <span class="na">timing</span> <span class="o">=</span> <span class="s">True</span>
 
 <span class="c1"># Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,</span>
-<span class="c1"># orgtbl, rst, mediawiki, html, latex, latex_booktabs.</span>
+<span class="c1"># orgtbl, rst, mediawiki, html, latex, latex_booktabs, tsv.</span>
 <span class="c1"># Recommended: psql, fancy_grid and grid.</span>
 <span class="na">table_format</span> <span class="o">=</span> <span class="s">psql</span>
 
@@ -79,15 +75,51 @@ updating the version of mycli.</p>
 <span class="c1"># colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity</span>
 <span class="na">syntax_style</span> <span class="o">=</span> <span class="s">default</span>
 
-<span class="c1"># Keybindings: Possible values: emacs, vi</span>
+<span class="c1"># Keybindings: Possible values: emacs, vi.</span>
+<span class="c1"># Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.</span>
+<span class="c1"># When Vi mode is enabled you can use modal editing features offered by Vi in the REPL.</span>
 <span class="na">key_bindings</span> <span class="o">=</span> <span class="s">emacs</span>
+
+<span class="c1"># Enabling this option will show the suggestions in a wider menu. Thus more items are suggested.</span>
+<span class="na">wider_completion_menu</span> <span class="o">=</span> <span class="s">False</span>
 
 <span class="c1"># MySQL prompt</span>
 <span class="c1"># \t - Product type (Percona, MySQL, Mariadb)</span>
 <span class="c1"># \u - Username</span>
 <span class="c1"># \h - Hostname of the server</span>
 <span class="c1"># \d - Database name</span>
+<span class="c1"># \n - Newline</span>
 <span class="na">prompt</span> <span class="o">=</span> <span class="s">&#39;\t \u@\h:\d&gt; &#39;</span>
+
+<span class="c1"># Custom colors for the completion menu, toolbar, etc.</span>
+<span class="k">[colors]</span>
+<span class="c1"># Completion menus.</span>
+<span class="na">Token.Menu.Completions.Completion.Current</span> <span class="o">=</span> <span class="s">&#39;bg:#00aaaa #000000&#39;</span>
+<span class="na">Token.Menu.Completions.Completion</span> <span class="o">=</span> <span class="s">&#39;bg:#008888 #ffffff&#39;</span>
+<span class="na">Token.Menu.Completions.MultiColumnMeta</span> <span class="o">=</span> <span class="s">&#39;bg:#aaffff #000000&#39;</span>
+<span class="na">Token.Menu.Completions.ProgressButton</span> <span class="o">=</span> <span class="s">&#39;bg:#003333&#39;</span>
+<span class="na">Token.Menu.Completions.ProgressBar</span> <span class="o">=</span> <span class="s">&#39;bg:#00aaaa&#39;</span>
+
+<span class="c1"># Selected text.</span>
+<span class="na">Token.SelectedText</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#6666aa&#39;</span>
+
+<span class="c1"># Search matches. (reverse-i-search)</span>
+<span class="na">Token.SearchMatch</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#4444aa&#39;</span>
+<span class="na">Token.SearchMatch.Current</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#44aa44&#39;</span>
+
+<span class="c1"># The bottom toolbar.</span>
+<span class="na">Token.Toolbar.Off</span> <span class="o">=</span> <span class="s">&#39;bg:#222222 #888888&#39;</span>
+<span class="na">Token.Toolbar.On</span> <span class="o">=</span> <span class="s">&#39;bg:#222222 #ffffff&#39;</span>
+
+<span class="c1"># Search/arg/system toolbars.</span>
+<span class="na">Token.Toolbar.Search</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
+<span class="na">Token.Toolbar.Search.Text</span> <span class="o">=</span> <span class="s">&#39;nobold&#39;</span>
+<span class="na">Token.Toolbar.System</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
+<span class="na">Token.Toolbar.Arg</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
+<span class="na">Token.Toolbar.Arg.Text</span> <span class="o">=</span> <span class="s">&#39;nobold&#39;</span>
+
+<span class="c1"># Favorite queries.</span>
+<span class="k">[favorite_queries]</span>
 </pre></div>
 
 
