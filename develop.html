@@ -47,7 +47,7 @@ and send pull requests to a repository.
 <p>Clone your fork to your local machine. </p>
 </li>
 </ol>
-<div class="highlight"><pre>    git clone git@github.com:&lt;your-username&gt;/mycli.git
+<div class="highlight"><pre><span></span>    git clone git@github.com:&lt;your-username&gt;/mycli.git
 </pre></div>
 
 
@@ -55,7 +55,7 @@ and send pull requests to a repository.
 <li>Setup a remote called upstream that points to the original mycli repo. This
    is to keep your fork in sync with the mainline.</li>
 </ol>
-<div class="highlight"><pre>    git remote add upstream git@github.com:dbcli/mycli.git
+<div class="highlight"><pre><span></span>    git remote add upstream git@github.com:dbcli/mycli.git
 </pre></div>
 
 
@@ -63,7 +63,7 @@ and send pull requests to a repository.
 <li>Make the necessary changes in your local machine. Commit and push to your
    fork. </li>
 </ol>
-<div class="highlight"><pre>       $ git commit 
+<div class="highlight"><pre><span></span>       $ git commit 
 
        $ git push origin 
 </pre></div>
@@ -77,7 +77,7 @@ and send pull requests to a repository.
 <p>Sync with the main mycli repo. </p>
 </li>
 </ol>
-<div class="highlight"><pre>       $ git pull upstream master   # Pull from the main repo to local copy.
+<div class="highlight"><pre><span></span>       $ git pull upstream master   # Pull from the main repo to local copy.
 
        $ git push origin master     # Pushes from local copy to your fork.
 </pre></div>
@@ -90,7 +90,7 @@ will help you get started.</p>
 <p>Create a virtualenv (let's call it mycli-dev). Once the virtualenv is activated
 <code>cd</code> into the local clone of mycli folder and install mycli using pip as
 follows:</p>
-<div class="highlight"><pre>    $ pip install --editable .
+<div class="highlight"><pre><span></span>    $ pip install --editable .
 </pre></div>
 
 
@@ -161,5 +161,11 @@ Just open a pull request and I can help you get it fixed before merging.</p>
     </script>
 <!--<script src="./theme/js/script-min.js"></script>-->
 <script src="./theme/js/script1.js"></script>
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'dbcli/mycli'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 </body>
 </html>

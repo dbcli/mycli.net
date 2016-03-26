@@ -41,19 +41,19 @@ highlighting.</p>
 
 <h1>Quick Start</h1>
 <p>If you already know how to install python packages, then you can simply do:</p>
-<div class="highlight"><pre><span class="nv">$ </span>pip install mycli
+<div class="highlight"><pre><span></span>$ pip install mycli
 </pre></div>
 
 
 <p>If you're on OS X you can install it via homebrew.</p>
-<div class="highlight"><pre><span class="nv">$ </span>brew update <span class="o">&amp;&amp;</span> brew install mycli
+<div class="highlight"><pre><span></span>$ brew update <span class="o">&amp;&amp;</span> brew install mycli
 </pre></div>
 
 
 <p>If you're having trouble with the quick start, check the <a href="./install">install</a> page for
 detailed instructions.</p>
 <h1>Usage</h1>
-<div class="highlight"><pre><span class="nv">$ </span>mycli --help
+<div class="highlight"><pre><span></span>$ mycli --help
 Usage: mycli <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>DATABASE<span class="o">]</span>
 
 Options:
@@ -69,7 +69,7 @@ Options:
   -R, --prompt TEXT             Prompt format <span class="o">(</span>Default: <span class="s2">&quot;\t \u@\h:\d&gt; &quot;</span><span class="o">)</span>
   -l, --logfile FILENAME        Log every query and its results to a file.
   --defaults-group-suffix TEXT  Read config group with the specified suffix.
-  --defaults-file PATH          Only <span class="nb">read </span>default options from the given file
+  --defaults-file PATH          Only <span class="nb">read</span> default options from the given file
   --auto-vertical-output        Automatically switch to vertical output mode
                                 <span class="k">if</span> the result is wider than the terminal
                                 width.
@@ -79,11 +79,11 @@ Options:
 
 
 <h1>Examples</h1>
-<div class="highlight"><pre><span class="nv">$ </span>mycli local_database
+<div class="highlight"><pre><span></span>$ mycli local_database
 
-<span class="nv">$ </span>mycli -h localhost -u root app_db
+$ mycli -h localhost -u root app_db
 
-<span class="nv">$ </span>mycli mysql://amjith@localhost:3306/django_poll
+$ mycli mysql://amjith@localhost:3306/django_poll
 </pre></div>
 </section>
         <section id="extras" class="body">
@@ -130,5 +130,11 @@ Options:
     </script>
 <!--<script src="./theme/js/script-min.js"></script>-->
 <script src="./theme/js/script1.js"></script>
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'dbcli/mycli'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 </body>
 </html>
