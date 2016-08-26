@@ -50,29 +50,12 @@ $ easy_install mycli
 
 <h1>Linux:</h1>
 <h3>Debian/Ubuntu Package:</h3>
-<p>The debian package for <code>mycli</code> is hosted on <a href="https://packagecloud.io/">packagecloud.io</a>.</p>
-<p>Add the gpg key for packagecloud for package verification.</p>
-<div class="highlight"><pre><span></span>    $ curl https://packagecloud.io/gpg.key | apt-key add -
-</pre></div>
-
-
-<p>Install a package called apt-transport-https to make it possible for apt to fetch packages over https.</p>
-<div class="highlight"><pre><span></span>    $ apt-get install -y apt-transport-https
-</pre></div>
-
-
-<p>Add the mycli package repo to the apt source.</p>
-<div class="highlight"><pre><span></span>    $ echo &quot;deb https://packagecloud.io/amjith/mycli/ubuntu/ trusty main&quot; | sudo tee -a /etc/apt/sources.list
-</pre></div>
-
-
-<p>Update and apt sources and install mycli.</p>
+<p><a href="https://packages.debian.org/search?keywords=mycli">https://packages.debian.org/search?keywords=mycli</a></p>
 <div class="highlight"><pre><span></span>    $ sudo apt-get update
     $ sudo apt-get install mycli
 </pre></div>
 
 
-<p>Now <code>mycli</code> can be upgraded easily by using <code>sudo apt-get upgrade mycli</code>.</p>
 <h3>RHEL, Centos, Fedora:</h3>
 <p>I haven't built an RPM package for mycli yet. So please use <code>pip</code> to install <code>mycli</code>. You can install pip on your system using:</p>
 <div class="highlight"><pre><span></span>    $ sudo yum install python-pip python-devel
