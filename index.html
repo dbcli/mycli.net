@@ -28,7 +28,7 @@
 <section id="content" class="body">
     <h1 class="entry-title">mycli</h1>
     
-    <p>Mycli is a command line interface for MySQL, MariaDB, and Percona with auto-completion and syntax
+    <p>MyCLI is a command line interface for MySQL, MariaDB, and Percona with auto-completion and syntax
 highlighting.</p>
 <ul>
 <li>Source: <a href="https://github.com/dbcli/mycli">https://github.com/dbcli/mycli</a></li>
@@ -53,28 +53,39 @@ highlighting.</p>
 <p>If you're having trouble with the quick start, check the <a href="./install">install</a> page for
 detailed instructions.</p>
 <h1>Usage</h1>
-<div class="highlight"><pre><span></span>$ mycli --help
-Usage: mycli <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>DATABASE<span class="o">]</span>
+<div class="highlight"><pre><span></span><span class="x"> </span><span class="p">$</span><span class="x"> mycli --help</span>
+<span class="x"> Usage: mycli [OPTIONS] [DATABASE]</span>
 
-Options:
-  -h, --host TEXT               Host address of the database.
-  -P, --port INTEGER            Port number to use <span class="k">for</span> connection. Honors
-                                <span class="nv">$MYSQL_TCP_PORT</span>
-  -u, --user TEXT               User name to connect to the database.
-  -S, --socket TEXT             The socket file to use <span class="k">for</span> connection.
-  -p, --password TEXT           Password to connect to the database
-  --pass TEXT                   Password to connect to the database
-  -v, --version                 Version of mycli.
-  -D, --database TEXT           Database to use.
-  -R, --prompt TEXT             Prompt format <span class="o">(</span>Default: <span class="s2">&quot;\t \u@\h:\d&gt; &quot;</span><span class="o">)</span>
-  -l, --logfile FILENAME        Log every query and its results to a file.
-  --defaults-group-suffix TEXT  Read config group with the specified suffix.
-  --defaults-file PATH          Only <span class="nb">read</span> default options from the given file
-  --auto-vertical-output        Automatically switch to vertical output mode
-                                <span class="k">if</span> the result is wider than the terminal
-                                width.
-  --login-path TEXT             Read this path from the login file.
-  --help                        Show this message and exit.
+<span class="x"> Options:</span>
+<span class="x">-h, --host TEXT               Host address of the database.</span>
+<span class="x">-P, --port TEXT               Port number to use for connection. Honors</span>
+<span class="x">                              </span><span class="p">$</span><span class="nv">MYSQL_TCP_PORT</span><span class="x"></span>
+<span class="x">-u, --user TEXT               User name to connect to the database.</span>
+<span class="x">-S, --socket TEXT             The socket file to use for connection.</span>
+<span class="x">-p, --password                Force password prompt.</span>
+<span class="x">--pass TEXT                   Password to connect to the database</span>
+<span class="x">--ssl-ca PATH                 CA file in PEM format</span>
+<span class="x">--ssl-capath TEXT             CA directory</span>
+<span class="x">--ssl-cert PATH               X509 cert in PEM format</span>
+<span class="x">--ssl-key PATH                X509 key in PEM format</span>
+<span class="x">--ssl-cipher TEXT             SSL cipher to use</span>
+<span class="x">--ssl-verify-server-cert      Verify server&#39;s &quot;Common Name&quot; in its cert</span>
+<span class="x">                              against hostname used when connecting. This</span>
+<span class="x">                              option is disabled by default</span>
+<span class="x">-v, --version                 Version of mycli.</span>
+<span class="x">-D, --database TEXT           Database to use.</span>
+<span class="x">-R, --prompt TEXT             Prompt format (Default: &quot;\t \u@\h:\d&gt; &quot;)</span>
+<span class="x">-l, --logfile FILENAME        Log every query and its results to a file.</span>
+<span class="x">--defaults-group-suffix TEXT  Read config group with the specified suffix.</span>
+<span class="x">--defaults-file PATH          Only read default options from the given file</span>
+<span class="x">--auto-vertical-output        Automatically switch to vertical output mode</span>
+<span class="x">                              if the result is wider than the terminal</span>
+<span class="x">                              width.</span>
+<span class="x">-t, --table                   Display batch output in table format.</span>
+<span class="x">--warn / --no-warn            Warn before running a destructive query.</span>
+<span class="x">--local-infile BOOLEAN        Enable/disable LOAD DATA LOCAL INFILE.</span>
+<span class="x">--login-path TEXT             Read this path from the login file.</span>
+<span class="x">--help                        Show this message and exit.</span>
 </pre></div>
 
 
