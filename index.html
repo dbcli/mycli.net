@@ -49,7 +49,7 @@ highlighting.</p>
 </pre></div>
 
 
-<p>If you're on OS X you can install it via homebrew.</p>
+<p>If you're on macOS you can install it via homebrew.</p>
 <div class="highlight"><pre><span></span>$ brew update <span class="o">&amp;&amp;</span> brew install mycli
 </pre></div>
 
@@ -61,35 +61,38 @@ detailed instructions.</p>
 <span class="x"> Usage: mycli [OPTIONS] [DATABASE]</span>
 
 <span class="x"> Options:</span>
-<span class="x">-h, --host TEXT               Host address of the database.</span>
-<span class="x">-P, --port TEXT               Port number to use for connection. Honors</span>
-<span class="x">                              </span><span class="p">$</span><span class="nv">MYSQL_TCP_PORT</span><span class="x"></span>
-<span class="x">-u, --user TEXT               User name to connect to the database.</span>
-<span class="x">-S, --socket TEXT             The socket file to use for connection.</span>
-<span class="x">-p, --password                Force password prompt.</span>
-<span class="x">--pass TEXT                   Password to connect to the database</span>
-<span class="x">--ssl-ca PATH                 CA file in PEM format</span>
-<span class="x">--ssl-capath TEXT             CA directory</span>
-<span class="x">--ssl-cert PATH               X509 cert in PEM format</span>
-<span class="x">--ssl-key PATH                X509 key in PEM format</span>
-<span class="x">--ssl-cipher TEXT             SSL cipher to use</span>
-<span class="x">--ssl-verify-server-cert      Verify server&#39;s &quot;Common Name&quot; in its cert</span>
-<span class="x">                              against hostname used when connecting. This</span>
-<span class="x">                              option is disabled by default</span>
-<span class="x">-v, --version                 Version of mycli.</span>
-<span class="x">-D, --database TEXT           Database to use.</span>
-<span class="x">-R, --prompt TEXT             Prompt format (Default: &quot;\t \u@\h:\d&gt; &quot;)</span>
-<span class="x">-l, --logfile FILENAME        Log every query and its results to a file.</span>
-<span class="x">--defaults-group-suffix TEXT  Read config group with the specified suffix.</span>
-<span class="x">--defaults-file PATH          Only read default options from the given file</span>
-<span class="x">--auto-vertical-output        Automatically switch to vertical output mode</span>
-<span class="x">                              if the result is wider than the terminal</span>
-<span class="x">                              width.</span>
-<span class="x">-t, --table                   Display batch output in table format.</span>
-<span class="x">--warn / --no-warn            Warn before running a destructive query.</span>
-<span class="x">--local-infile BOOLEAN        Enable/disable LOAD DATA LOCAL INFILE.</span>
-<span class="x">--login-path TEXT             Read this path from the login file.</span>
-<span class="x">--help                        Show this message and exit.</span>
+<span class="x">   -h, --host TEXT               Host address of the database.</span>
+<span class="x">   -P, --port INTEGER            Port number to use for connection. Honors</span>
+<span class="x">                                 </span><span class="p">$</span><span class="nv">MYSQL_TCP_PORT</span><span class="x"></span>
+<span class="x">   -u, --user TEXT               User name to connect to the database.</span>
+<span class="x">   -S, --socket TEXT             The socket file to use for connection.</span>
+<span class="x">   -p, --password TEXT           Password to connect to the database</span>
+<span class="x">   --pass TEXT                   Password to connect to the database</span>
+<span class="x">   --ssl-ca PATH                 CA file in PEM format</span>
+<span class="x">   --ssl-capath TEXT             CA directory</span>
+<span class="x">   --ssl-cert PATH               X509 cert in PEM format</span>
+<span class="x">   --ssl-key PATH                X509 key in PEM format</span>
+<span class="x">   --ssl-cipher TEXT             SSL cipher to use</span>
+<span class="x">   --ssl-verify-server-cert      Verify server&#39;s &quot;Common Name&quot; in its cert</span>
+<span class="x">                                 against hostname used when connecting. This</span>
+<span class="x">                                 option is disabled by default</span>
+<span class="x">   -v, --version                 Version of mycli.</span>
+<span class="x">   -D, --database TEXT           Database to use.</span>
+<span class="x">   -R, --prompt TEXT             Prompt format (Default: &quot;\t \u@\h:\d&gt; &quot;)</span>
+<span class="x">   -l, --logfile FILENAME        Log every query and its results to a file.</span>
+<span class="x">   --defaults-group-suffix TEXT  Read config group with the specified suffix.</span>
+<span class="x">   --defaults-file PATH          Only read default options from the given file</span>
+<span class="x">   --myclirc PATH                Location of myclirc file.</span>
+<span class="x">   --auto-vertical-output        Automatically switch to vertical output mode</span>
+<span class="x">                                 if the result is wider than the terminal</span>
+<span class="x">                                 width.</span>
+<span class="x">   -t, --table                   Display batch output in table format.</span>
+<span class="x">   --csv                         Display batch output in CSV format.</span>
+<span class="x">   --warn / --no-warn            Warn before running a destructive query.</span>
+<span class="x">   --local-infile BOOLEAN        Enable/disable LOAD DATA LOCAL INFILE.</span>
+<span class="x">   --login-path TEXT             Read this path from the login file.</span>
+<span class="x">   -e, --execute TEXT            Execute query to the database.</span>
+<span class="x">   --help                        Show this message and exit.</span>
 </pre></div>
 
 
