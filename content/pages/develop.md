@@ -20,9 +20,9 @@ and send pull requests to a repository.
 
 The basic steps are:
 
-1. Fork the mycli project via the github UI. 
+1. Fork the mycli project via the github UI.
 
-1. Clone your fork to your local machine. 
+1. Clone your fork to your local machine.
 
 ```
     git clone git@github.com:<your-username>/mycli.git
@@ -36,17 +36,17 @@ The basic steps are:
 ```
 
 1. Make the necessary changes in your local machine. Commit and push to your
-   fork. 
+   fork.
 
 ```
-       $ git commit 
+       $ git commit
 
-       $ git push origin 
+       $ git push origin
 ```
 
-1. Create a pull request from your fork to the mainline repo using Github UI. 
+1. Create a pull request from your fork to the mainline repo using Github UI.
 
-1. Sync with the main mycli repo. 
+1. Sync with the main mycli repo.
 
 
 ```
@@ -74,7 +74,7 @@ working folder into the virtualenv. By installing it using `pip install -e`
 we've linked the mycli installation with the working copy. So any changes made
 to the code is immediately available in the installed version of mycli. This
 makes it easy to change something in the code, launch mycli and check the
-effects of your change. 
+effects of your change.
 
 ## Tests
 
@@ -82,11 +82,11 @@ The tests are located in the `tests` directory in the mycli project root.
 
 Tests are written using `py.test` testing framework. Install `py.test` by
 using `pip install pytest` in the virtualenv. Then execute the tests by
-calling `py.test` from the root of the project folder. 
+calling `py.test` from the root of the project folder.
 
-A test runner called `tox` is used to run the tests in Python 2.6, Python 2.7
-and Python 3.3. You can do `pip install tox` and call `tox` from the
-project root to run the tests in all 3 python versions.
+A test runner called `tox` is used to run the tests in Python 2.7 and 3.3+.
+You can do `pip install tox` and call `tox` from the
+project root to run the tests in all supported python versions.
 
 If you'd like to run just one of the test files (say test_sqlcompletion.py)
 then `cd` into the tests folder and execute `py.test test_sqlcompletion.py`
@@ -95,6 +95,6 @@ the tests in that file in all three Python versions.
 
 The tests are also run via [Travis CI](https://travis-ci.org/dbcli/mycli) when
 a new Pull Request is opened. If you have a change and it happens to be failing
-on one of the Python version (typically on Python 3), don't worry about it.
-Just open a pull request and I can help you get it fixed before merging.
+on one of the Python versions, don't worry about it. Just open a pull request
+and I can help you get it fixed before merging.
 
