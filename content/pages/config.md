@@ -16,6 +16,9 @@ Mycli also reads the `[client]` section of MySQL's option file, `~/.my.cnf`
 (on Windows: `C:\Users\<username>\.my.cnf`). See the example file at the bottom of this
 page for more information.
 
+**NOTE:** Mycli does not read the `[mysql]` section of MySQL's option files. It
+only reads the `[client]` section.
+
 MySQL recommends that users store their passwords in an encrypted login path
 file. Mycli will read this file. For more information about how to store your
 authentication credentials in this file, see the [MySQL Configuration Utility
