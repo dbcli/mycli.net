@@ -2,8 +2,11 @@ Title: Configuration
 Slug: config
 status: hidden
 
-The configuration file is located at `~/.myclirc` which is a hidden file in
-your home folder in Linux and OS X. On Windows it is located at `C:\Users\<username>\.myclirc`.
+## Introduction
+
+Most of mycli's user settings are configured via the file located at
+`~/.myclirc`, which is a hidden file in your home folder in Linux and OS X.
+On Windows it is located at `C:\Users\<username>\.myclirc`.
 
 The config file is created when mycli is launched for the very first time.
 Updates to that file are not overwritten by subsequent launches of mycli or
@@ -13,7 +16,13 @@ Mycli also reads the `[client]` section of MySQL's option file, `~/.my.cnf`
 (on Windows: `C:\Users\<username>\.my.cnf`). See the example file at the bottom of this
 page for more information.
 
-Sample mycli config file:
+MySQL recommends that users store their passwords in an encrypted login path
+file. Mycli will read this file. For more information about how to store your
+authentication credentials in this file, see the [MySQL Configuration Utility
+documentation](https://dev.mysql.com/doc/refman/5.7/en/mysql-config-editor.html).
+
+
+## Sample Mycli Config File
 
 ```
 [main]
@@ -116,7 +125,7 @@ Token.Toolbar.Arg.Text = 'nobold'
 [favorite_queries]
 ```
 
-Sample MySQL option file:
+## Sample MySQL Option File
 
 ```
 [client]
