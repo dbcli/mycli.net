@@ -162,9 +162,6 @@ local-infile = on
 # Use it if the previous one clashes with other MySQL tools.
 loose-local-infile = on
 
-# Configure the prompt
-prompt = '\h:\d> '
-
 # Configure the pager
 pager = 'vim -'
 
