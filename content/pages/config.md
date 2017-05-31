@@ -2,19 +2,35 @@ Title: Configuration
 Slug: config
 status: hidden
 
-The configuration file is located at `~/.myclirc` which is a hidden file in
-your home folder in Linux and OS X. On Windows it is located at `C:\Users\<username>\.myclirc`.
+## Introduction
+
+Most of mycli's user settings are configured via the file located at
+`~/.myclirc`, which is a hidden file in your home folder in Linux and OS X.
+On Windows it is located at `C:\Users\<username>\.myclirc`.
 
 The config file is created when mycli is launched for the very first time.
 Updates to that file are not overwritten by subsequent launches of mycli or
 updating the version of mycli.
 
-Sample config file:
+Mycli also reads the `[client]` section of MySQL's option file, `~/.my.cnf`
+(on Windows: `C:\Users\<username>\.my.cnf`). See the example file at the bottom of this
+page for more information.
+
+**NOTE:** Mycli does not read the `[mysql]` section of MySQL's option files. It
+only reads the `[client]` section.
+
+MySQL recommends that users store their passwords in an encrypted login path
+file. Mycli will read this file. For more information about how to store your
+authentication credentials in this file, see the [MySQL Configuration Utility
+documentation](https://dev.mysql.com/doc/refman/5.7/en/mysql-config-editor.html).
+
+
+## Sample Mycli Config File
 
 ```
 [main]
 
-# Enables context sensitive auto-completion. If this is disabled the all
+# Enables context sensitive auto-completion. If this is disabled then all
 # possible completions will be listed.
 smart_completion = True
 
@@ -43,10 +59,11 @@ log_level = INFO
 # Timing of sql statments and table rendering.
 timing = True
 
-# Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
-# orgtbl, rst, mediawiki, html, latex, latex_booktabs, tsv.
-# Recommended: psql, fancy_grid and grid.
-table_format = psql
+# Table format. Possible values: ascii, double, github,
+# psql, plain, simple, grid, fancy_grid, pipe, orgtbl, rst, mediawiki, html,
+# latex, latex_booktabs, textile, moinmoin, jira, vertical, tsv, csv.
+# Recommended: ascii
+table_format = ascii
 
 # Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,
 # native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,
@@ -69,6 +86,16 @@ wider_completion_menu = False
 # \n - Newline
 prompt = '\t \u@\h:\d> '
 
+# Skip intro info on startup and outro info on exit
+less_chatty = False
+
+# Use alias from --login-path instead of host name in prompt
+login_path_as_host = False
+
+# Cause result sets to be displayed vertically if they are too wide for the current window,
+# and using normal tabular format otherwise. (This applies to statements terminated by ; or \G.)
+auto_vertical_output = False
+
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
 # Completion menus.
@@ -86,6 +113,7 @@ Token.SearchMatch = '#ffffff bg:#4444aa'
 Token.SearchMatch.Current = '#ffffff bg:#44aa44'
 
 # The bottom toolbar.
+Token.Toolbar = 'bg:#222222 #aaaaaa'
 Token.Toolbar.Off = 'bg:#222222 #888888'
 Token.Toolbar.On = 'bg:#222222 #ffffff'
 
@@ -100,4 +128,43 @@ Token.Toolbar.Arg.Text = 'nobold'
 [favorite_queries]
 ```
 
-All the options are thoroughly documented. 
+## Sample MySQL Option File
+
+```
+[client]
+# The client section is read by mycli and all MySQL applications.
+
+# Default connection information
+user = thor
+password = hammer
+host = localhost
+database = asgard
+port = 3306
+
+# Connect via a socket.
+# socket = '/tmp/mysql.sock'
+
+# Use the UTF-8 character set
+default-character-set = utf-8
+
+# SSL options - see the MySQL documentation for more information.
+# https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-ca
+# ssl-ca
+# ssl-cert
+# ssl-key
+# ssl-cipher
+# ssl-verify-server-cert
+
+# Turn on the LOAD DATA INFILE statement
+local-infile = on
+
+# Another local infile alias.
+# Use it if the previous one clashes with other MySQL tools.
+loose-local-infile = on
+
+# Configure the pager
+pager = 'vim -'
+
+# Disable the pager
+# skip-pager = on
+```
