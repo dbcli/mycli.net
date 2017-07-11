@@ -35,39 +35,48 @@
     <h1>Compatibility:</h1>
 <p>Tested on macOS and Linux. Runs on Python 2.7, 3.3, 3.4, 3.5, and 3.6.</p>
 <p>Works well with unicode input/output.</p>
+<p><strong>NOTE:</strong> Python 2.6 support was dropped in mycli 1.9.0. If you're running
+Python 2.6, you'll want to install mycli 1.8.1.</p>
 <h1>Python Package:</h1>
 <p>If you already know how to install python packages, then you can do:</p>
 <p>You might need <code>sudo</code>.</p>
-<div class="highlight"><pre><span></span>$ pip install mycli
+<div class="highlight"><pre><span class="nv">$ </span>pip install mycli
+</pre></div>
 
-or
 
-$ easy_install mycli
+<p>or</p>
+<div class="highlight"><pre><span class="nv">$ </span>easy_install mycli
 </pre></div>
 
 
 <h1>macOS:</h1>
-<p>The easiest way install <code>mycli</code> on a Mac is to use <a href="http://brew.sh/">homebrew</a>.</p>
-<div class="highlight"><pre><span></span>$ brew update <span class="o">&amp;&amp;</span> brew install mycli
+<p>The easiest way install mycli on a Mac is to use <a href="http://brew.sh/">Homebrew</a>.</p>
+<div class="highlight"><pre><span class="nv">$ </span>brew install mycli
 </pre></div>
 
 
 <h1>Linux:</h1>
 <h3>Debian/Ubuntu Package:</h3>
 <p><a href="https://packages.debian.org/search?keywords=mycli">https://packages.debian.org/search?keywords=mycli</a></p>
-<div class="highlight"><pre><span></span>    $ sudo apt-get update
-    $ sudo apt-get install mycli
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get update
+<span class="nv">$ </span>sudo apt-get install mycli
 </pre></div>
 
 
-<h3>RHEL, Centos, Fedora:</h3>
-<p>I haven't built an RPM package for mycli yet. So please use <code>pip</code> to install <code>mycli</code>. You can install pip on your system using:</p>
-<div class="highlight"><pre><span></span>    $ sudo yum install python-pip python-devel
+<h3>Fedora</h3>
+<div class="highlight"><pre><span class="nv">$ </span>sudo dnf install mycli
 </pre></div>
 
 
-<p>Once that is installed, you can install mycli as follows:</p>
-<div class="highlight"><pre><span></span>    $ sudo pip install mycli
+<h3>RHEL, Centos:</h3>
+<p>We don't have packages for RHEL or Centos, yet. Instead, use <code>pip</code> to install
+mycli. You can install <code>pip</code> on your system using:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo yum install python-pip python-devel
+</pre></div>
+
+
+<p>Once that is installed, you can install mycli:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install mycli
 </pre></div>
 </section>
         <section id="extras" class="body">

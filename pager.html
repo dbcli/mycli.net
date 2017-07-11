@@ -6,7 +6,7 @@
             window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(19),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,s.now(),!0])}catch(u){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,s.now()])}var i=t("handle"),a=t(20),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(p){"stack"in p&&(t(12),t(11),"addEventListener"in window&&t(6),s.xhrWrappable&&t(13),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,s.now(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(){C++,N=y.hash,this[u]=M.now()}function o(){C--,y.hash!==N&&i(0,!0);var t=M.now();this[l]=~~this[l]+t-this[u],this[d]=t}function i(t,e){x.emit("newURL",[""+y,e])}function a(t,e){t.on(e,function(){this[e]=M.now()})}var c="-start",s="-end",f="-body",u="fn"+c,d="fn"+s,p="cb"+c,h="cb"+s,l="jsTime",m="fetch",v="addEventListener",w=window,y=w.location;if(w[v]){var b=t(9),g=t(10),x=t(8),E=t(6),O=t(12),R=t(7),P=t(13),T=t("ee"),S=T.get("tracer");t(14);var M=t("loader");M.features.spa=!0;var N,j=w[v],C=0;T.on(u,r),T.on(p,r),T.on(d,o),T.on(h,o),T.buffer([u,d,"xhr-done","xhr-resolved"]),E.buffer([u]),O.buffer(["setTimeout"+s,"clearTimeout"+c,u]),P.buffer([u,"new-xhr","send-xhr"+c]),R.buffer([m+c,m+"-done",m+f+c,m+f+s]),x.buffer(["newURL"]),b.buffer([u]),g.buffer(["propagate",p,h,"executor-err","resolve"+c]),S.buffer([u,"no-"+u]),a(P,"send-xhr"+c),a(T,"xhr-resolved"),a(T,"xhr-done"),a(R,m+c),a(R,m+"-done"),x.on("pushState-end",i),x.on("replaceState-end",i),j("hashchange",i,!0),j("load",i,!0),j("popstate",function(){i(0,C>1)},!0)}},{}],5:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(12),c=t(11),s="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",p="resource",h="-start",l="-end",m="fn"+h,v="fn"+l,w="bstTimer",y="pushState",b=t("loader");b.features.stn=!0,t(8);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=b.now())}),o.on(v,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,b.now()])}),a.on(m,function(t,e,n){this.bstStart=b.now(),this.bstType=n}),a.on(v,function(t,e){i(w,[e,this.bstStart,b.now(),this.bstType])}),c.on(m,function(){this.bstStart=b.now()}),c.on(v,function(t,e){i(w,[e,this.bstStart,b.now(),"requestAnimationFrame"])}),o.on(y+h,function(t){this.time=b.now(),this.startPath=location.pathname+location.hash}),o.on(y+l,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+s]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(p)]),window.performance["c"+s]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(p)]),window.performance["webkitC"+s]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],6:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(22)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],7:[function(t,e,n){function r(t,e,n){var r=t[e];"function"==typeof r&&(t[e]=function(){var t=r.apply(this,arguments);return o.emit(n+"start",arguments,t),t.then(function(e){return o.emit(n+"end",[null,e],t),e},function(e){throw o.emit(n+"end",[e],t),e})})}var o=t("ee").get("fetch"),i=t(19);e.exports=o;var a=window,c="fetch-",s=c+"body-",f=["arrayBuffer","blob","json","text","formData"],u=a.Request,d=a.Response,p=a.fetch,h="prototype";u&&d&&p&&(i(f,function(t,e){r(u[h],e,s),r(d[h],e,s)}),r(a,"fetch",c),o.on(c+"end",function(t,e){var n=this;e?e.clone().arrayBuffer().then(function(t){n.rxSize=t.byteLength,o.emit(c+"done",[null,e],n)}):o.emit(c+"done",[t],n)}))},{}],8:[function(t,e,n){var r=t("ee").get("history"),o=t(22)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],9:[function(t,e,n){var r=t("ee").get("mutation"),o=t(22)(r),i=NREUM.o.MO;e.exports=r,i&&(window.MutationObserver=function(t){return this instanceof i?new i(o(t,"fn-")):i.apply(this,arguments)},MutationObserver.prototype=i.prototype)},{}],10:[function(t,e,n){function r(t){var e=a.context(),n=c(t,"executor-",e),r=new f(n);return a.context(r).getCtx=function(){return e},a.emit("new-promise",[r,e],e),r}function o(t,e){return e}var i=t(22),a=t("ee").get("promise"),c=i(a),s=t(19),f=NREUM.o.PR;e.exports=a,f&&(window.Promise=r,["all","race"].forEach(function(t){var e=f[t];f[t]=function(n){function r(t){return function(){a.emit("propagate",[null,!o],i),o=o||!t}}var o=!1;s(n,function(e,n){Promise.resolve(n).then(r("all"===t),r(!1))});var i=e.apply(f,arguments),c=f.resolve(i);return c}}),["resolve","reject"].forEach(function(t){var e=f[t];f[t]=function(t){var n=e.apply(f,arguments);return t!==n&&a.emit("propagate",[t,!0],n),n}}),f.prototype["catch"]=function(t){return this.then(null,t)},f.prototype=Object.create(f.prototype,{constructor:{value:r}}),s(Object.getOwnPropertyNames(f),function(t,e){try{r[e]=f[e]}catch(n){}}),a.on("executor-start",function(t){t[0]=c(t[0],"resolve-",this),t[1]=c(t[1],"resolve-",this)}),a.on("executor-err",function(t,e,n){t[1](n)}),c.inPlace(f.prototype,["then"],"then-",o),a.on("then-start",function(t,e){this.promise=e,t[0]=c(t[0],"cb-",this),t[1]=c(t[1],"cb-",this)}),a.on("then-end",function(t,e,n){this.nextPromise=n;var r=this.promise;a.emit("propagate",[r,!0],n)}),a.on("cb-end",function(t,e,n){a.emit("propagate",[n,!0],this.nextPromise)}),a.on("propagate",function(t,e,n){this.getCtx&&!e||(this.getCtx=function(){if(t instanceof Promise)var e=a.context(t);return e&&e.getCtx?e.getCtx():this})}),r.toString=function(){return""+f})},{}],11:[function(t,e,n){var r=t("ee").get("raf"),o=t(22)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],12:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(22)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],13:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",c)}function i(t){w.push(t),l&&(b=-b,g.data=b)}function a(){for(var t=0;t<w.length;t++)r([],w[t]);w.length&&(w=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(6);var f=t("ee"),u=f.get("xhr"),d=t(22)(u),p=NREUM.o,h=p.XHR,l=p.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],w=[];e.exports=u;var y=window.XMLHttpRequest=function(t){var e=new h(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(h,y),y.prototype=h.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),l){var b=1,g=document.createTextNode(b);new l(a).observe(g,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],14:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=a.now()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var s=t.getResponseHeader("X-NewRelic-App-Data");s&&(e.cat=s.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return l(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(15),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,p=t("id"),h=t(18),l=t(17),m=window.XMLHttpRequest;a.features.xhr=!0,t(13),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,h&&(h>34||h<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=l(r);i&&(n.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var c=0;c<d;c++)e.addEventListener(u[c],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,e],e)})}},{}],15:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],16:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[f.now()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(19),c=t(20),s=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",h=p+"ixn-";a(d,function(t,e){u[e]=o(p+e,!0,"api")}),u.addPageAction=o(p+"addPageAction",!0),u.setCurrentRouteName=o(p+"routeName",!0),e.exports=newrelic,u.interaction=function(){return(new r).get()};var l=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(h+"tracer",[f.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){l[e]=o(h+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],17:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],18:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],19:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],20:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],21:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],22:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(20),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){p([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o,e)}catch(a){p([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){p([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function p(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o,i){if(!p.aborted||i){t&&t(n,r,o);for(var a=e(o),c=l(n),s=c.length,f=0;f<s;f++)c[f].apply(a,r);var d=u[y[n]];return d&&d.push([b,n,r,a]),a}}function h(t,e){w[t]=l(t).concat(e)}function l(t){return w[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",y[n]=e,e in u||(u[e]=[])})}var w={},y={},b={on:h,emit:n,get:m,listeners:l,context:e,buffer:v,abort:a,aborted:!1};return b}function i(){return new r}function a(){(u.api||u.feature)&&(p.aborted=!0,u=p.backlog={})}var c="nr@context",s=t("gos"),f=t(19),u={},d={},p=e.exports=o();p.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!x++){var t=g.info=NREUM.info,e=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(y,function(e,n){t[e]||(t[e]=n)}),s("mark",["onload",a()+g.offset],null,"api");var n=p.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===p.readyState&&i()}function i(){s("mark",["domContent",a()+g.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-g.offset}var c=(new Date).getTime(),s=t("handle"),f=t(19),u=t("ee"),d=window,p=d.document,h="addEventListener",l="attachEvent",m=d.XMLHttpRequest,v=m&&m.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:m,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var w=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-spa-1026.min.js"},b=m&&v&&v[h]&&!/CriOS/.test(navigator.userAgent),g=e.exports={offset:c,now:a,origin:w,features:{},xhrWrappable:b};t(16),p[h]?(p[h]("DOMContentLoaded",i,!1),d[h]("load",r,!1)):(p[l]("onreadystatechange",o),d[l]("onload",r)),s("mark",["firstbyte",c],null,"api");var x=0,E=t(21)},{}]},{},["loader",2,14,5,3,4]);
             ;NREUM.info={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",licenseKey:"4c5c3d8963",applicationID:"39742227",sa:1}
         </script>
-        <title>Configuration</title>
+        <title>Pager</title>
         <link rel="stylesheet" href="./theme/css/main.css" />
         <link href="http://mycli.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="mycli RSS Feed" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -30,163 +30,44 @@
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
-    <h1 class="entry-title">Configuration</h1>
+    <h1 class="entry-title">Pager</h1>
     
-    <h2>Introduction</h2>
-<p>Most of mycli's user settings are configured via the file located at
-<code>~/.myclirc</code>, which is a hidden file in your home folder in Linux and OS X.
-On Windows it is located at <code>C:\Users\&lt;username&gt;\.myclirc</code>.</p>
-<p>The config file is created when mycli is launched for the very first time.
-Updates to that file are not overwritten by subsequent launches of mycli or
-updating the version of mycli.</p>
-<p>Mycli also reads the <code>[client]</code> section of MySQL's option file, <code>~/.my.cnf</code>
-(on Windows: <code>C:\Users\&lt;username&gt;\.my.cnf</code>). See the example file at the bottom of this
-page for more information.</p>
-<p><strong>NOTE:</strong> Mycli does not read the <code>[mysql]</code> section of MySQL's option files. It
-only reads the <code>[client]</code> section.</p>
-<p>MySQL recommends that users store their passwords in an encrypted login path
-file. Mycli will read this file. For more information about how to store your
-authentication credentials in this file, see the <a href="https://dev.mysql.com/doc/refman/5.7/en/mysql-config-editor.html">MySQL Configuration Utility
-documentation</a>.</p>
-<h2>Sample Mycli Config File</h2>
-<div class="highlight"><pre><span class="k">[main]</span>
-
-<span class="c1"># Enables context sensitive auto-completion. If this is disabled then all</span>
-<span class="c1"># possible completions will be listed.</span>
-<span class="na">smart_completion</span> <span class="o">=</span> <span class="s">True</span>
-
-<span class="c1"># Multi-line mode allows breaking up the sql statements into multiple lines. If</span>
-<span class="c1"># this is set to True, then the end of the statements must have a semi-colon.</span>
-<span class="c1"># If this is set to False then sql statements can&#39;t be split into multiple</span>
-<span class="c1"># lines. End of line (return) is considered as the end of the statement.</span>
-<span class="na">multi_line</span> <span class="o">=</span> <span class="s">False</span>
-
-<span class="c1"># Destructive warning mode will alert you before executing a sql statement</span>
-<span class="c1"># that may cause harm to the database such as &quot;drop table&quot;, &quot;drop database&quot;</span>
-<span class="c1"># or &quot;shutdown&quot;.</span>
-<span class="na">destructive_warning</span> <span class="o">=</span> <span class="s">True</span>
-
-<span class="c1"># log_file location.</span>
-<span class="na">log_file</span> <span class="o">=</span> <span class="s">~/.mycli.log</span>
-
-<span class="c1"># Default log level. Possible values: &quot;CRITICAL&quot;, &quot;ERROR&quot;, &quot;WARNING&quot;, &quot;INFO&quot;</span>
-<span class="c1"># and &quot;DEBUG&quot;.</span>
-<span class="na">log_level</span> <span class="o">=</span> <span class="s">INFO</span>
-
-<span class="c1"># Log every query and its results to a file. Enable this by uncommenting the</span>
-<span class="c1"># line below.</span>
-<span class="c1"># audit_log = ~/.mycli-audit.log</span>
-
-<span class="c1"># Timing of sql statments and table rendering.</span>
-<span class="na">timing</span> <span class="o">=</span> <span class="s">True</span>
-
-<span class="c1"># Table format. Possible values: ascii, double, github,</span>
-<span class="c1"># psql, plain, simple, grid, fancy_grid, pipe, orgtbl, rst, mediawiki, html,</span>
-<span class="c1"># latex, latex_booktabs, textile, moinmoin, jira, vertical, tsv, csv.</span>
-<span class="c1"># Recommended: ascii</span>
-<span class="na">table_format</span> <span class="o">=</span> <span class="s">ascii</span>
-
-<span class="c1"># Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,</span>
-<span class="c1"># native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,</span>
-<span class="c1"># colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity</span>
-<span class="na">syntax_style</span> <span class="o">=</span> <span class="s">default</span>
-
-<span class="c1"># Keybindings: Possible values: emacs, vi.</span>
-<span class="c1"># Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.</span>
-<span class="c1"># When Vi mode is enabled you can use modal editing features offered by Vi in the REPL.</span>
-<span class="na">key_bindings</span> <span class="o">=</span> <span class="s">emacs</span>
-
-<span class="c1"># Enabling this option will show the suggestions in a wider menu. Thus more items are suggested.</span>
-<span class="na">wider_completion_menu</span> <span class="o">=</span> <span class="s">False</span>
-
-<span class="c1"># MySQL prompt</span>
-<span class="c1"># \t - Product type (Percona, MySQL, Mariadb)</span>
-<span class="c1"># \u - Username</span>
-<span class="c1"># \h - Hostname of the server</span>
-<span class="c1"># \d - Database name</span>
-<span class="c1"># \n - Newline</span>
-<span class="na">prompt</span> <span class="o">=</span> <span class="s">&#39;\t \u@\h:\d&gt; &#39;</span>
-
-<span class="c1"># Skip intro info on startup and outro info on exit</span>
-<span class="na">less_chatty</span> <span class="o">=</span> <span class="s">False</span>
-
-<span class="c1"># Use alias from --login-path instead of host name in prompt</span>
-<span class="na">login_path_as_host</span> <span class="o">=</span> <span class="s">False</span>
-
-<span class="c1"># Cause result sets to be displayed vertically if they are too wide for the current window,</span>
-<span class="c1"># and using normal tabular format otherwise. (This applies to statements terminated by ; or \G.)</span>
-<span class="na">auto_vertical_output</span> <span class="o">=</span> <span class="s">False</span>
-
-<span class="c1"># Custom colors for the completion menu, toolbar, etc.</span>
-<span class="k">[colors]</span>
-<span class="c1"># Completion menus.</span>
-<span class="na">Token.Menu.Completions.Completion.Current</span> <span class="o">=</span> <span class="s">&#39;bg:#00aaaa #000000&#39;</span>
-<span class="na">Token.Menu.Completions.Completion</span> <span class="o">=</span> <span class="s">&#39;bg:#008888 #ffffff&#39;</span>
-<span class="na">Token.Menu.Completions.MultiColumnMeta</span> <span class="o">=</span> <span class="s">&#39;bg:#aaffff #000000&#39;</span>
-<span class="na">Token.Menu.Completions.ProgressButton</span> <span class="o">=</span> <span class="s">&#39;bg:#003333&#39;</span>
-<span class="na">Token.Menu.Completions.ProgressBar</span> <span class="o">=</span> <span class="s">&#39;bg:#00aaaa&#39;</span>
-
-<span class="c1"># Selected text.</span>
-<span class="na">Token.SelectedText</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#6666aa&#39;</span>
-
-<span class="c1"># Search matches. (reverse-i-search)</span>
-<span class="na">Token.SearchMatch</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#4444aa&#39;</span>
-<span class="na">Token.SearchMatch.Current</span> <span class="o">=</span> <span class="s">&#39;#ffffff bg:#44aa44&#39;</span>
-
-<span class="c1"># The bottom toolbar.</span>
-<span class="na">Token.Toolbar</span> <span class="o">=</span> <span class="s">&#39;bg:#222222 #aaaaaa&#39;</span>
-<span class="na">Token.Toolbar.Off</span> <span class="o">=</span> <span class="s">&#39;bg:#222222 #888888&#39;</span>
-<span class="na">Token.Toolbar.On</span> <span class="o">=</span> <span class="s">&#39;bg:#222222 #ffffff&#39;</span>
-
-<span class="c1"># Search/arg/system toolbars.</span>
-<span class="na">Token.Toolbar.Search</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
-<span class="na">Token.Toolbar.Search.Text</span> <span class="o">=</span> <span class="s">&#39;nobold&#39;</span>
-<span class="na">Token.Toolbar.System</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
-<span class="na">Token.Toolbar.Arg</span> <span class="o">=</span> <span class="s">&#39;noinherit bold&#39;</span>
-<span class="na">Token.Toolbar.Arg.Text</span> <span class="o">=</span> <span class="s">&#39;nobold&#39;</span>
-
-<span class="c1"># Favorite queries.</span>
-<span class="k">[favorite_queries]</span>
+    <p>Mycli outputs query results in a pager (e.g. <code>less</code>, <code>more</code>). This
+allows you to easily view large result sets one page at a time.</p>
+<h2>Configuring the Pager</h2>
+<p>When starting up, mycli checks the <code>pager</code> config option in MySQL's option
+files. If it's set, then mycli uses its value as the pager. If it's blank,
+then mycli will use the <code>PAGER</code> environment variable's value.</p>
+<p>Once mycli is started, you can use the <code>pager</code> command to change which pager
+mycli uses. Or, <code>nopager</code> will disable the pager.</p>
+<div class="highlight"><pre>&gt; pager less
+PAGER set to less.
+&gt; nopager
+Pager disabled.
 </pre></div>
 
 
-<h2>Sample MySQL Option File</h2>
-<div class="highlight"><pre><span class="k">[client]</span>
-<span class="c1"># The client section is read by mycli and all MySQL applications.</span>
+<h2>Disable Paging</h2>
+<p>You can disable the pager by adding <code>skip-pager = on</code> to the <code>[client]</code> section
+of your MySQL option file. See <a href="/config">Configuration</a> for more information.</p>
+<h2>Pager Behavior</h2>
+<p>On macOS and Linux, the pager will default to <code>less</code> for most users. <code>less</code>
+sometimes has less-than-desirable behavior like clearing the screen, cutting
+lines off, etc. You can configure <code>less</code> through environment variables in your
+shell configuration files. Here are some common <code>less</code> options and
+configuration examples:</p>
+<ul>
+<li><code>-X</code> leaves file contents on the screen when less exits.</li>
+<li><code>-F</code> makes <code>less</code> quit if the entire output can be displayed on one
+  screen.</li>
+<li><code>-R</code> displays ANSI color escape sequences in "raw" form.</li>
+<li><code>-S</code> disables line wrapping. Side-scroll to see long lines.</li>
+</ul>
+<div class="highlight"><pre># This is a popular option among mycli users.
+export LESS=&quot;-XFR&quot;
 
-<span class="c1"># Default connection information</span>
-<span class="na">user</span> <span class="o">=</span> <span class="s">thor</span>
-<span class="na">password</span> <span class="o">=</span> <span class="s">hammer</span>
-<span class="na">host</span> <span class="o">=</span> <span class="s">localhost</span>
-<span class="na">database</span> <span class="o">=</span> <span class="s">asgard</span>
-<span class="na">port</span> <span class="o">=</span> <span class="s">3306</span>
-
-<span class="c1"># Connect via a socket.</span>
-<span class="c1"># socket = &#39;/tmp/mysql.sock&#39;</span>
-
-<span class="c1"># Use the UTF-8 character set</span>
-<span class="na">default-character-set</span> <span class="o">=</span> <span class="s">utf-8</span>
-
-<span class="c1"># SSL options - see the MySQL documentation for more information.</span>
-<span class="c1"># https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-ca</span>
-<span class="c1"># ssl-ca</span>
-<span class="c1"># ssl-cert</span>
-<span class="c1"># ssl-key</span>
-<span class="c1"># ssl-cipher</span>
-<span class="c1"># ssl-verify-server-cert</span>
-
-<span class="c1"># Turn on the LOAD DATA INFILE statement</span>
-<span class="na">local-infile</span> <span class="o">=</span> <span class="s">on</span>
-
-<span class="c1"># Another local infile alias.</span>
-<span class="c1"># Use it if the previous one clashes with other MySQL tools.</span>
-<span class="na">loose-local-infile</span> <span class="o">=</span> <span class="s">on</span>
-
-<span class="c1"># Configure the pager</span>
-<span class="na">pager</span> <span class="o">=</span> <span class="s">&#39;vim -&#39;</span>
-
-<span class="c1"># Disable the pager</span>
-<span class="c1"># skip-pager = on</span>
+# Some mycli users like to disable line wrapping.
+export LESS=&quot;-SRXF&quot;
 </pre></div>
 </section>
         <section id="extras" class="body">

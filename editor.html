@@ -32,15 +32,18 @@
 <section id="content" class="body">
     <h1 class="entry-title">Editor</h1>
     
-    <p>One of the powerful slash commands is <code>\e</code>. This will launch an editor to edit the current query. </p>
-<p>Here are some examples: </p>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> This will launch the default editor (read from </span><span class="p">$</span><span class="nv">EDITOR</span><span class="x"> env variable).</span>
-<span class="x">&gt; \e </span>
+    <p>One of the most useful slash commands is <code>\e</code>. This will launch an editor to
+edit the current query (or previous query, if the current query is blank).</p>
+<p>Here are some examples:</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> This will launch the default editor (read from </span><span class="p">$</span><span class="nv">EDITOR</span><span class="x"> env variable).</span>
+<span class="err">#</span><span class="x"> It will put the previous query in the editor&#39;s buffer.</span>
+<span class="x">&gt; \e</span>
 
 <span class="err">#</span><span class="x"> This will open the default editor with the current query in the buffer.</span>
 <span class="x">&gt; SELECT * FROM \e</span>
 
-<span class="err">#</span><span class="x"> This will open an existing file in the editor and the contents of the file will be populated into the repl once the file is saved.</span>
+<span class="err">#</span><span class="x"> This will open an existing file in the editor and the contents of the file</span>
+<span class="x">  will be populated into the prompt once the file is saved.</span>
 <span class="x">&gt; \e &lt;filename&gt;</span>
 </pre></div>
 </section>

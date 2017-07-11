@@ -45,63 +45,62 @@ highlighting.</p>
 
 <h1>Quick Start</h1>
 <p>If you already know how to install python packages, then you can simply do:</p>
-<div class="highlight"><pre><span></span>$ pip install mycli
+<div class="highlight"><pre><span class="nv">$ </span>pip install mycli
 </pre></div>
 
 
 <p>If you're on macOS you can install it via homebrew.</p>
-<div class="highlight"><pre><span></span>$ brew update <span class="o">&amp;&amp;</span> brew install mycli
+<div class="highlight"><pre><span class="nv">$ </span>brew update <span class="o">&amp;&amp;</span> brew install mycli
 </pre></div>
 
 
 <p>If you're having trouble with the quick start, check the <a href="./install">install</a> page for
 detailed instructions.</p>
 <h1>Usage</h1>
-<div class="highlight"><pre><span></span><span class="x"> </span><span class="p">$</span><span class="x"> mycli --help</span>
-<span class="x"> Usage: mycli [OPTIONS] [DATABASE]</span>
+<div class="highlight"><pre><span class="nv">$ </span>mycli --help
+Usage: mycli <span class="o">[</span>OPTIONS<span class="o">]</span> <span class="o">[</span>DATABASE<span class="o">]</span>
 
-<span class="x"> Options:</span>
-<span class="x">   -h, --host TEXT               Host address of the database.</span>
-<span class="x">   -P, --port INTEGER            Port number to use for connection. Honors</span>
-<span class="x">                                 </span><span class="p">$</span><span class="nv">MYSQL_TCP_PORT</span><span class="x"></span>
-<span class="x">   -u, --user TEXT               User name to connect to the database.</span>
-<span class="x">   -S, --socket TEXT             The socket file to use for connection.</span>
-<span class="x">   -p, --password TEXT           Password to connect to the database</span>
-<span class="x">   --pass TEXT                   Password to connect to the database</span>
-<span class="x">   --ssl-ca PATH                 CA file in PEM format</span>
-<span class="x">   --ssl-capath TEXT             CA directory</span>
-<span class="x">   --ssl-cert PATH               X509 cert in PEM format</span>
-<span class="x">   --ssl-key PATH                X509 key in PEM format</span>
-<span class="x">   --ssl-cipher TEXT             SSL cipher to use</span>
-<span class="x">   --ssl-verify-server-cert      Verify server&#39;s &quot;Common Name&quot; in its cert</span>
-<span class="x">                                 against hostname used when connecting. This</span>
-<span class="x">                                 option is disabled by default</span>
-<span class="x">   -v, --version                 Version of mycli.</span>
-<span class="x">   -D, --database TEXT           Database to use.</span>
-<span class="x">   -R, --prompt TEXT             Prompt format (Default: &quot;\t \u@\h:\d&gt; &quot;)</span>
-<span class="x">   -l, --logfile FILENAME        Log every query and its results to a file.</span>
-<span class="x">   --defaults-group-suffix TEXT  Read config group with the specified suffix.</span>
-<span class="x">   --defaults-file PATH          Only read default options from the given file</span>
-<span class="x">   --myclirc PATH                Location of myclirc file.</span>
-<span class="x">   --auto-vertical-output        Automatically switch to vertical output mode</span>
-<span class="x">                                 if the result is wider than the terminal</span>
-<span class="x">                                 width.</span>
-<span class="x">   -t, --table                   Display batch output in table format.</span>
-<span class="x">   --csv                         Display batch output in CSV format.</span>
-<span class="x">   --warn / --no-warn            Warn before running a destructive query.</span>
-<span class="x">   --local-infile BOOLEAN        Enable/disable LOAD DATA LOCAL INFILE.</span>
-<span class="x">   --login-path TEXT             Read this path from the login file.</span>
-<span class="x">   -e, --execute TEXT            Execute query to the database.</span>
-<span class="x">   --help                        Show this message and exit.</span>
-</pre></div>
+  A MySQL terminal client with auto-completion and syntax highlighting.
 
+  Examples:
+    - mycli my_database
+    - mycli -u my_user -h my_host.com my_database
+    - mycli mysql://my_user@my_host.com:3306/my_database
 
-<h1>Examples</h1>
-<div class="highlight"><pre><span></span>$ mycli local_database
-
-$ mycli -h localhost -u root app_db
-
-$ mycli mysql://amjith@localhost:3306/django_poll
+Options:
+  -h, --host TEXT               Host address of the database.
+  -P, --port INTEGER            Port number to use <span class="k">for</span> connection. Honors
+                                <span class="nv">$MYSQL_TCP_PORT</span>.
+  -u, --user TEXT               User name to connect to the database.
+  -S, --socket TEXT             The socket file to use <span class="k">for</span> connection.
+  -p, --password TEXT           Password to connect to the database.
+  --pass TEXT                   Password to connect to the database.
+  --ssl-ca PATH                 CA file in PEM format.
+  --ssl-capath TEXT             CA directory.
+  --ssl-cert PATH               X509 cert in PEM format.
+  --ssl-key PATH                X509 key in PEM format.
+  --ssl-cipher TEXT             SSL cipher to use.
+  --ssl-verify-server-cert      Verify server<span class="s1">&#39;s &quot;Common Name&quot; in its cert</span>
+<span class="s1">                                against hostname used when connecting. This</span>
+<span class="s1">                                option is disabled by default.</span>
+<span class="s1">  -v, --version                 Output mycli&#39;</span>s version.
+  -D, --database TEXT           Database to use.
+  -R, --prompt TEXT             Prompt format <span class="o">(</span>Default: <span class="s2">&quot;\t \u@\h:\d&gt; &quot;</span><span class="o">)</span>.
+  -l, --logfile FILENAME        Log every query and its results to a file.
+  --defaults-group-suffix TEXT  Read MySQL config groups with the specified
+                                suffix.
+  --defaults-file PATH          Only <span class="nb">read </span>MySQL options from the given file.
+  --myclirc PATH                Location of myclirc file.
+  --auto-vertical-output        Automatically switch to vertical output mode
+                                <span class="k">if</span> the result is wider than the terminal
+                                width.
+  -t, --table                   Display batch output in table format.
+  --csv                         Display batch output in CSV format.
+  --warn / --no-warn            Warn before running a destructive query.
+  --local-infile BOOLEAN        Enable/disable LOAD DATA LOCAL INFILE.
+  --login-path TEXT             Read this path from the login file.
+  -e, --execute TEXT            Execute <span class="nb">command </span>and quit.
+  --help                        Show this message and exit.
 </pre></div>
 </section>
         <section id="extras" class="body">
