@@ -13,9 +13,9 @@ TIMEZONE = 'America/Los_Angeles'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
-TAG_FEED_ATOM = None
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
+TAG_FEED_ATOM = 'feeds/tag.%s.atom.xml'
 FEED_ALL_RSS = 'feeds/all.rss.xml'
 CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 TAG_FEED_RSS = 'feeds/tag.%s.rss.xml'
@@ -29,9 +29,9 @@ LINKS = (('pgcli', 'http://pgcli.com/'),
         )
 
 # Sponsors
-SPONSORS = (('jweiland', 'https://jweiland.net/', 'theme/images/jweiland.png', 'left'),
-            ('Tech Blue Software', 'http://www.techbluesoftware.co.in/', 'theme/images/techblue.png', 'right'),
-            )
+# SPONSORS = (('jweiland', 'https://jweiland.net/', 'theme/images/jweiland.png', 'left'),
+#             ('Tech Blue Software', 'http://www.techbluesoftware.co.in/', 'theme/images/techblue.png', 'right'),
+#             )
 
 # Social widget
 SOCIAL = (('twitter', 'http://twitter.com/amjithr'),
