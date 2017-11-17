@@ -1,7 +1,7 @@
 Title: Test - First post
 Date: 2017-08-02
 Category: Blog
-Tags: python
+Tags: test
 Slug: test
 
 
