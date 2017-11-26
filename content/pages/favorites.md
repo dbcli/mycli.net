@@ -42,7 +42,7 @@ Examples:
 
 ## Positional Parameters
 
-Favorite queries support bash-style parameter substitution. Save your favorite
+Favorite queries support shell-style parameter substitution. Save your favorite
 query with parameters as placeholders (e.g. `$1`, `$2`,
 `$3`, etc.):
 
