@@ -39,3 +39,20 @@ Examples:
     > \fd simple
     simple: Deleted
 ```
+
+## Positional Parameters
+
+Favorite queries support shell-style parameter substitution. Save your favorite
+query with parameters as placeholders (e.g. `$1`, `$2`,
+`$3`, etc.):
+
+```
+\fs user_by_name select * from users where name = '$1'
+```
+
+When you call a favorite query with parameters, just add the parameters after
+the query's name. You can put quotes around arguments that include spaces.
+
+```
+\f user_by_name "Skelly McDermott"
+```
