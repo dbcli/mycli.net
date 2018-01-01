@@ -1,4 +1,4 @@
-Title: Release v1.15.0
+Title: Release v1.16.0
 Date: 2018-01-01
 Category: Blog
 Author: Thomas Roten
