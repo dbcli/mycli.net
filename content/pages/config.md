@@ -126,6 +126,10 @@ Token.Toolbar.Arg.Text = 'nobold'
 
 # Favorite queries.
 [favorite_queries]
+
+# DSN to call by -d option
+[alias_dsn]
+# example_dsn = mysql://[user[:password]@][netloc][:port][/dbname]
 ```
 
 ## Sample MySQL Option File
