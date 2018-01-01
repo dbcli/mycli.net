@@ -5,7 +5,7 @@ status: hidden
 ## Introduction
 
 Most of mycli's user settings are configured via the file located at
-`~/.myclirc`, which is a hidden file in your home folder in Linux and OS X.
+`~/.myclirc`, which is a hidden file in your home folder in Linux and macOS.
 On Windows it is located at `C:\Users\<username>\.myclirc`.
 
 The config file is created when mycli is launched for the very first time.
@@ -19,10 +19,9 @@ page for more information.
 **NOTE:** Mycli does not read the `[mysql]` section of MySQL's option files. It
 only reads the `[client]` section.
 
-MySQL recommends that users store their passwords in an encrypted login path
-file. Mycli will read this file. For more information about how to store your
-authentication credentials in this file, see the [MySQL Configuration Utility
-documentation](https://dev.mysql.com/doc/refman/5.7/en/mysql-config-editor.html).
+Mycli supports two methods of storing server credentials. See the
+[server configuration documentation]({filename}/pages/loginpath.md)
+for more information.
 
 
 ## Sample Mycli Config File
@@ -126,6 +125,10 @@ Token.Toolbar.Arg.Text = 'nobold'
 
 # Favorite queries.
 [favorite_queries]
+
+# Use the -d option to reference a DSN.
+[alias_dsn]
+# example_dsn = mysql://[user[:password]@][host][:port][/dbname]
 ```
 
 ## Sample MySQL Option File
