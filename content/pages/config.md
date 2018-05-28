@@ -95,6 +95,12 @@ login_path_as_host = False
 # and using normal tabular format otherwise. (This applies to statements terminated by ; or \G.)
 auto_vertical_output = False
 
+# keyword casing preference. Possible values "lower", "upper", "auto"
+keyword_casing = auto
+
+# Enable the pager on startup.
+enable_pager = True
+
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
 # Completion menus.
@@ -167,7 +173,4 @@ loose-local-infile = on
 
 # Configure the pager
 pager = 'vim -'
-
-# Disable the pager
-# skip-pager = on
 ```
