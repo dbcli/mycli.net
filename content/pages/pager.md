@@ -23,8 +23,8 @@ Pager disabled.
 
 ## Disable Paging
 
-You can disable the pager by adding `skip-pager = on` to the `[client]` section
-of your MySQL option file. See [Configuration](/config) for more information.
+You can disable the pager by adding `enable_pager = False` to your mycli config
+file. See [Configuration](/config) for more information.
 
 ## Pager Behavior
 
