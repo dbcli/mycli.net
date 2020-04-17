@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Amjith Ramanujam'
 SITENAME = u'mycli'
-SITEURL = 'http://mycli.net'
+SITEURL = 'https://www.mycli.net'
 
 PATH = 'content'
 
