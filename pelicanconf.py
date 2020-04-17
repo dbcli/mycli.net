@@ -25,13 +25,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('pgcli', 'http://pgcli.com/'),
-         ('packagecloud', 'http://packagecloud.io/'),
         )
-
-# Sponsors
-# SPONSORS = (('jweiland', 'https://jweiland.net/', 'theme/images/jweiland.png', 'left'),
-#             ('Tech Blue Software', 'http://www.techbluesoftware.co.in/', 'theme/images/techblue.png', 'right'),
-#             )
 
 # Social widget
 SOCIAL = (('twitter', 'http://twitter.com/amjithr'),
@@ -52,6 +46,4 @@ STATIC_PATHS = {'images', 'extra/CNAME'}
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 THEME = 'theme/notmyidea'
-#THEME = 'blueidea'
 
-GOOGLE_ANALYTICS = 'UA-64493707-1'
