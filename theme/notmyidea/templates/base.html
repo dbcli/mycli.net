@@ -71,26 +71,9 @@
                 </div><!-- /.social -->
         {% endif %}
         </section><!-- /#extras -->
-        <section id="extras" class="body">
-        {% if SPONSORS %}
-                <div class="sponsors">
-                        <h2>Sponsors</h2>
-                        {% for name, link, image, float in SPONSORS %}
-                        <a href={{ link }}><img src="{{ image }}" alt="{{ name }}" width=200 height=100 style="float: {{ float }};"></a>
-                        {% endfor %}
-                </div><!-- /.sponsors -->
-        {% endif %}
-        </section>
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script1.js"></script>
 
 {% include 'analytics.html' %}
 {% include 'disqus_script.html' %}
-<!--<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script-min.js"></script>-->
-<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script1.js"></script>
 </body>
 </html>
