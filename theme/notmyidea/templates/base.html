@@ -42,6 +42,16 @@
         </header><!-- /#banner -->
         {% block content %}
         {% endblock %}
+       <section id="extras" class="body">
+         {% if SPONSORS %}
+         <div class="sponsors">
+           <h2>Sponsors</h2>
+           {% for name, link, image, float in SPONSORS %}
+           <a href={{ link }}><img src="{{ image }}" alt="{{ name }}" width=184 height=64 style="float: {{ float }};"></a>
+           {% endfor %}
+         </div><!-- /.sponsors -->
+         {% endif %}
+       </section>
         <section id="extras" class="body">
         {% if LINKS %}
                 <div class="blogroll">
