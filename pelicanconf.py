@@ -47,3 +47,5 @@ EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 THEME = 'theme/notmyidea'
 
+SPONSORS = (('Nova Kid School', 'https://www.novakidschool.com/', 'theme/images/novakid.svg', 'left'),
+            )
