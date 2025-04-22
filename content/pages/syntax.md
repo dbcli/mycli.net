@@ -3,7 +3,7 @@ Slug: syntax
 status: hidden
 
 Here is a gallery of syntax color themes. These themes can be modified via the
-[config]({filename}/pages/config.md) file (~/.myclirc).
+[config]({filename}/pages/config.md) file (~/.myclirc) via the `style` option.
 
 # default
 
