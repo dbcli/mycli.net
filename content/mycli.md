@@ -17,12 +17,8 @@ It is developed by a team of core devs from around the world. The
 user-friendliness is not just limited to the tool but the entire community is
 friendly and welcoming to newcomers. 
 
-The project is lead by [Thomas Roten](https://github.com/tsroten). The core
-team constitutes [Irina](https://github.com/j-bennet),
-[Dick](https://github.com/meeuw), [François](https://github.com/fpietka),
-[Matheus](https://github.com/mdsrosa),
-[John](https://github.com/johnksterling), [Darik](https://github.com/darikg)
-and [Amjith](https://github.com/amjith)
+The project is lead by [Roland Walker](https://github.com/rolandwalker). 
+
 
 If you're interested in using the project, check out the quick start guide or the installation guide. 
 
