@@ -17,7 +17,7 @@ It is developed by a team of core devs from around the world. The
 user-friendliness is not just limited to the tool but the entire community is
 friendly and welcoming to newcomers. 
 
-The project is lead by [Roland Walker](https://github.com/rolandwalker). 
+The project is led by [Roland Walker](https://github.com/rolandwalker). 
 
 
 If you're interested in using the project, check out the quick start guide or the installation guide. 
