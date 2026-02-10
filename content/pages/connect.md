@@ -31,8 +31,8 @@ It's also possible to supply some of these arguments using environment variables
 
 The following configuration files can be used to configure your connection:
 
-* /etc/my.cnf / ~/.my.cnf - MySQL compatible configuration file
 * ~/.myclirc - MyCli configuration file (see `[alias_dsn]` section.
+* DEPRECATED: /etc/my.cnf / ~/.my.cnf - MySQL compatible configuration file
 
 ## Command line arguments
 
