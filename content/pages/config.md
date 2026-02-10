@@ -12,12 +12,8 @@ The config file is created when mycli is launched for the very first time.
 Updates to that file are not overwritten by subsequent launches of mycli or
 updating the version of mycli.
 
-Mycli also reads the `[client]` section of MySQL's option file, `~/.my.cnf`
-(on Windows: `C:\Users\<username>\.my.cnf`). See the example file at the bottom of this
-page for more information.
-
-**NOTE:** Mycli does not read the `[mysql]` section of MySQL's option files. It
-only reads the `[client]` section.
+Mycli also currently reads the `[client]` section of MySQL's option file,
+`~/.my.cnf` but this is deprecated.  See [Issue 1490](https://github.com/dbcli/mycli/issues/1490).
 
 Mycli supports two methods of storing server credentials. See the
 [server configuration documentation]({filename}/pages/loginpath.md)
@@ -135,42 +131,4 @@ Token.Toolbar.Arg.Text = 'nobold'
 # Use the -d option to reference a DSN.
 [alias_dsn]
 # example_dsn = mysql://[user[:password]@][host][:port][/dbname]
-```
-
-## Sample MySQL Option File
-
-```
-[client]
-# The client section is read by mycli and all MySQL applications.
-
-# Default connection information
-user = thor
-password = hammer
-host = localhost
-database = asgard
-port = 3306
-
-# Connect via a socket.
-# socket = '/tmp/mysql.sock'
-
-# Use the UTF-8 character set
-default-character-set = utf-8
-
-# SSL options - see the MySQL documentation for more information.
-# https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-ca
-# ssl-ca
-# ssl-cert
-# ssl-key
-# ssl-cipher
-# ssl-verify-server-cert
-
-# Turn on the LOAD DATA INFILE statement
-local-infile = on
-
-# Another local infile alias.
-# Use it if the previous one clashes with other MySQL tools.
-loose-local-infile = on
-
-# Configure the pager
-pager = 'vim -'
 ```
