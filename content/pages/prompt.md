@@ -10,20 +10,21 @@ you can interactively change the prompt by using the
 
 The prompt is generated using the following format sequences:
 
- * `\D` - the full current date, e.g. `Fri Dec 20 20:51:56 2015`
- * `\R` - the current hour, in 24-hour time (0–23)
- * `\r` - the current hour, standard 12-hour time (1–12)
+ * `\D` - the full current date, _e.g._ `Sat Feb 14 15:55:48 2026`
+ * `\R` - the current hour in 24-hour time (0–23)
+ * `\r` - the current hour in 12-hour time (1–12)
  * `\m` - minutes of the current time
  * `\s` - seconds of the current time
  * `\P` - AM/PM
  * `\d` - selected database/schema
  * `\h` - hostname of the server
  * `\p` - the connection port
- * `\t` - database vendor (_e.g._ Percona, MySQL, MariaDB)
+ * `\t` - database vendor (Percona, MySQL, MariaDB, TiDB)
  * `\u` - username
  * `\A` - DSN alias if any
  * `\n` - a newline
  * `\_` - a space
+ * `\x1b[...m` - an ANSI escape sequence (can style with color)
 
 The default prompt looks something like this: `mysql user@localhost:db_name> `.
 
