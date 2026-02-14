@@ -101,7 +101,7 @@ semicolon.
 
 * <a name="llm"></a> `\llm <question>`
 
-    Interact with an LLM using natural language.  See [Using the \llm Command](https://github.com/dbcli/mycli/blob/main/doc/llm.md).
+    Interact with an LLM using natural language.  See [Using the \llm Command]({filename}/pages/llm.md).
 
 * <a name="once"></a> `once <filename>`, `\o [-o] <filename>`
 
