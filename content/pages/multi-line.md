@@ -2,12 +2,13 @@ Title: Multi-line Mode
 Slug: multi-line
 status: hidden
 
-The default behavior of `mycli` is to execute a query as soon as the enter key
+The default behavior of `mycli` is to execute a query as soon as the Enter key
 is pressed. This might come as a surprise to seasoned MySQL users who always
-enter a semi-colon to denote the end of the query. 
+enter a semicolon to denote the end of the query.
 
-To emulate the original MySQL behavior you can enable the multi-line mode which
-will require a semi-colon to be present at the end of the line. This enables
-writing multi-line queries if they are really long. You can enable multi-line
-mode by pressing `<F3>` key or set it permanently via the
-[config]({filename}/pages/config.md) file. 
+To emulate the vendor client behavior you can enable multi-line mode, which
+will require a semicolon to be present at the end of the statement. This enables
+writing multi-line queries.
+
+You can toggle multi-line mode by pressing the `<F3>` key or set it persistently
+via the `multi_line` option in [`~/.myclirc`]({filename}/pages/config.md).
