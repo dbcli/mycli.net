@@ -11,8 +11,8 @@ you can interactively change the prompt by using the
 The prompt is generated using the following format sequences:
 
  * `\D` - full current date, _e.g._ `Sat Feb 14 15:55:48 2026`
- * `\R` - current hour in 24-hour time (0–23)
- * `\r` - current hour in 12-hour time (0–12)
+ * `\R` - current hour in 24-hour time (00–23)
+ * `\r` - current hour in 12-hour time (01–12)
  * `\m` - minutes of the current time
  * `\s` - seconds of the current time
  * `\P` - AM/PM
