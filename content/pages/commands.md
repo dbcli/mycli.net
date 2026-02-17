@@ -72,12 +72,12 @@ semicolon.
     The `\dt` commands are equivalent to running `SHOW TABLES`, `SHOW COLUMNS FROM
     [table_name]`, and `SHOW CREATE TABLE [table_name]`.
 
-* <a name="e"></a> `<query>\e`
+* <a name="e"></a> `\e <filename>`, `<query>\e`
 
-    Edit the current statement with an editor (uses the environment variable `$EDITOR`).
-    If this is entered without a current query, it will populate the editor
-    with the previous query.  `\e` is equivalent to the keystroke sequence
-    <kbd>Ctrl</kbd>-<kbd>x</kbd> <kbd>Ctrl</kbd>-<kbd>e</kbd>.
+    Edit the current statement with an editor (uses the environment variable `$EDITOR`)
+    or open a file.  If this is entered with an empty line, it will populate the editor
+    with the previous query.  `\e` is generally equivalent to the keystroke sequence
+    <kbd>control</kbd>-<kbd>x</kbd> <kbd>control</kbd>-<kbd>e</kbd>.
 
 * <a name="f"></a> `\f`, `\f <name> [arg, arg, ..]`
 
