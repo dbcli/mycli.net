@@ -4,30 +4,58 @@ status: hidden
 
 ## Introduction
 
-Most of mycli's user settings are configured via the file located at
-`~/.myclirc`, which is a hidden file in your home folder in Linux and macOS.
-On Windows it is located at `C:\Users\<username>\.myclirc`.
+Mycli's user settings are configured via the file located at `~/.myclirc`,
+which is a hidden file in your home folder on Linux and macOS.  On Windows
+the file is located at `C:\Users\<username>\.myclirc`.
 
 The config file is created when mycli is launched for the very first time.
-Updates to that file are not overwritten by subsequent launches of mycli or
-updating the version of mycli.
+Updates to the file are not overwritten by subsequent launches of mycli or
+when updating the version of mycli.  (See "Checkup" below).
 
-Mycli also currently reads the `[client]` section of MySQL's option file,
-`~/.my.cnf` but this is deprecated.  See [Issue 1490](https://github.com/dbcli/mycli/issues/1490).
+Mycli also currently reads the `[client]` and `[mysqld]` sections of MySQL's
+option file, `~/.my.cnf` but this is **deprecated**.  See [Issue 1490](https://github.com/dbcli/mycli/issues/1490).
+All settings which may have been read from `~/.my.cnf` in the past now have
+preferred replacements in `~/.myclirc`.
 
-Mycli supports two methods of storing server credentials. See the
+Mycli supports a few methods of storing user credentials. See the
 [server configuration documentation]({filename}/pages/loginpath.md)
 for more information.
 
+## Checkup
 
-## Sample Mycli Config File
+Mycli also inherits configuration from the package defaults, which will be
+taken for any settings not present in `~/.myclirc`.  If you want to see new
+available settings which are being inherited from the package defaults, run
 
+```bash
+$ mycli --checkup
 ```
+
+There could be a substantial number of settings not present in your
+`~/.myclirc` because of the fact that the user configuration is not
+overwritten or updated during upgrades.
+
+## XDG Layout
+
+Those who prefer the XDG config file layout may move `~/.myclirc` to
+`~/.config/mycli/myclirc` where it will also be read.
+
+## Sample Config File
+
+```ini
 [main]
 
-# Enables context sensitive auto-completion. If this is disabled then all
+# Enable or disable the automatic displaying of warnings ("SHOW WARNINGS")
+# after executing a SQL statement when applicable.
+show_warnings = False
+
+# Enables context sensitive auto-completion. If this is disabled the all
 # possible completions will be listed.
 smart_completion = True
+
+# Minimum characters typed before offering completion suggestions.
+# Suggestion: 3.
+min_completion_trigger = 1
 
 # Multi-line mode allows breaking up the sql statements into multiple lines. If
 # this is set to True, then the end of the statements must have a semi-colon.
@@ -40,29 +68,71 @@ multi_line = False
 # or "shutdown".
 destructive_warning = True
 
+# Queries starting with these keywords will activate the destructive warning.
+# UPDATE will not activate the warning if the statement includes a WHERE
+# clause.
+destructive_keywords = DROP SHUTDOWN DELETE TRUNCATE ALTER UPDATE
+
+# interactive query history location.
+history_file = ~/.mycli-history
+
 # log_file location.
 log_file = ~/.mycli.log
 
 # Default log level. Possible values: "CRITICAL", "ERROR", "WARNING", "INFO"
-# and "DEBUG".
+# and "DEBUG". "NONE" disables logging.
 log_level = INFO
 
 # Log every query and its results to a file. Enable this by uncommenting the
 # line below.
 # audit_log = ~/.mycli-audit.log
 
-# Timing of sql statments and table rendering.
+# Timing of SQL statements and table rendering, or LLM commands.
 timing = True
 
-# Table format. Possible values: ascii, double, github,
-# psql, plain, simple, grid, fancy_grid, pipe, orgtbl, rst, mediawiki, html,
-# latex, latex_booktabs, textile, moinmoin, jira, vertical, tsv, csv.
-# Recommended: ascii
+# Show the full SQL when running a favorite query. Set to False to hide.
+show_favorite_query = True
+
+# Beep after long-running queries are completed; 0 to disable.
+beep_after_seconds = 0
+
+# Table format. Possible values: ascii, ascii_escaped, csv, csv-noheader,
+# csv-tab, csv-tab-noheader, double, fancy_grid, github, grid, html, jira,
+# jsonl, jsonl_escaped, latex, latex_booktabs, mediawiki, minimal, moinmoin,
+# mysql, mysql_unicode, orgtbl, pipe, plain, psql, psql_unicode, rst, simple,
+# sql-insert, sql-update, sql-update-1, sql-update-2, textile, tsv,
+# tsv_noheader, vertical.
+# Recommended: ascii.
 table_format = ascii
 
-# Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,
-# native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,
-# colorful, murphy, bw, pastie, paraiso-light, trac, default, fruity
+# Redirected otuput format
+# Recommended: csv.
+redirect_format = csv
+
+# How to display the missing value (ie NULL).  Only certain table formats
+# support configuring the missing value.  CSV for example always uses the
+# empty string, and JSON formats use native nulls.
+null_string = <null>
+
+# How to align numeric data in tabular output: right or left.
+numeric_alignment = right
+
+# How to display binary values in tabular output: "hex", or "utf8".  "utf8"
+# means attempt to render valid UTF-8 sequences as strings, then fall back
+# to hex rendering if not possible.
+binary_display = hex
+
+# A command to run after a successful output redirect, with {} to be replaced
+# with the escaped filename.  Mac example: echo {} | pbcopy.  Escaping is not
+# reliable/safe on Windows.
+post_redirect_command =
+
+# Syntax coloring style. Possible values (many support the "-dark" suffix):
+# manni, igor, xcode, vim, autumn, vs, rrt, native, perldoc, borland, tango, emacs,
+# friendly, monokai, paraiso, colorful, murphy, bw, pastie, paraiso, trac, default,
+# fruity.
+# Screenshots at http://mycli.net/syntax
+# Can be further modified in [colors]
 syntax_style = default
 
 # Keybindings: Possible values: emacs, vi.
@@ -74,12 +144,27 @@ key_bindings = emacs
 wider_completion_menu = False
 
 # MySQL prompt
-# \t - Product type (Percona, MySQL, Mariadb)
-# \u - Username
-# \h - Hostname of the server
-# \d - Database name
-# \n - Newline
+# * \D - full current date, e.g. Sat Feb 14 15:55:48 2026
+# * \R - current hour in 24-hour time (00–23)
+# * \r - current hour in 12-hour time (01–12)
+# * \m - minutes of the current time
+# * \s - seconds of the current time
+# * \P - AM/PM
+# * \d - selected database/schema
+# * \h - hostname of the server
+# * \p - connection port
+# * \j - connection socket basename
+# * \J - full connection socket path
+# * \k - connection socket basename OR the port
+# * \K - full connection socket path OR the port
+# * \t - database vendor (Percona, MySQL, MariaDB, TiDB)
+# * \u - username
+# * \A - DSN alias
+# * \n - a newline
+# * \_ - a space
+# * \x1b[...m - an ANSI escape sequence (can style with color)
 prompt = '\t \u@\h:\d> '
+prompt_continuation = '->'
 
 # Skip intro info on startup and outro info on exit
 less_chatty = False
@@ -94,41 +179,155 @@ auto_vertical_output = False
 # keyword casing preference. Possible values "lower", "upper", "auto"
 keyword_casing = auto
 
-# Enable the pager on startup.
+# disabled pager on startup
 enable_pager = True
+
+# Choose a specific pager
+pager = 'less'
+
+# whether to show verbose warnings about the transition away from reading my.cnf
+my_cnf_transition_done = False
+
+# Whether to store and retrieve passwords from the system keyring.
+# See the documentation for https://pypi.org/project/keyring/ for your OS.
+# Note that the hostname is considered to be different if short or qualified.
+# This can be overridden with --use-keyring= at the CLI.
+# A password can be reset with --use-keyring=reset at the CLI.
+use_keyring = False
+
+[connection]
+
+# character set for connections without --charset being set
+default_character_set = utf8mb4
+
+# whether to enable LOAD DATA LOCAL INFILE for connections without --local-infile being set
+default_local_infile = False
+
+# How often to send periodic background pings to the server when input is idle.  Ticks are
+# roughly in seconds, but may be faster.  Set to zero to disable.  Suggestion: 300.
+default_keepalive_ticks = 0
+
+# Sets the desired behavior for handling secure connections to the database server.
+# Possible values:
+# auto = SSL is preferred. Will attempt to connect via SSL, but will fallback to cleartext as needed.
+# on = SSL is required. Will attempt to connect via SSL and will fail if a secure connection is not established.
+# off = do not use SSL. Will fail if the server requires a secure connection.
+default_ssl_mode = auto
+
+# SSL CA file for connections without --ssl-ca being set
+default_ssl_ca =
+
+# SSL CA directory for connections without --ssl-capath being set
+default_ssl_capath =
+
+# SSL X509 cert path for connections without --ssl-cert being set
+default_ssl_cert =
+
+# SSL X509 key for connections without --ssl-key being set
+default_ssl_key =
+
+# SSL cipher to use for connections without --ssl-cipher being set
+default_ssl_cipher =
+
+# whether to verify server's "Common Name" in its cert, for connections without
+# --ssl-verify-server-cert being set
+default_ssl_verify_server_cert = False
+
+[llm]
+
+# If set to a positive integer, truncate text/binary fields to that width
+# in bytes when sending sample data, to conserve tokens.  Suggestion: 1024.
+prompt_field_truncate = None
+
+# If set to a positive integer, attempt to truncate various sections of LLM
+# prompt input to that number in bytes, to conserve tokens.  Suggestion:
+# 1000000.
+prompt_section_truncate = None
+
+[keys]
+
+# possible values: exit, none
+control_d = exit
+
+# possible values: auto, fzf, reverse_isearch
+control_r = auto
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
-# Completion menus.
-Token.Menu.Completions.Completion.Current = 'bg:#00aaaa #000000'
-Token.Menu.Completions.Completion = 'bg:#008888 #ffffff'
-Token.Menu.Completions.MultiColumnMeta = 'bg:#aaffff #000000'
-Token.Menu.Completions.ProgressButton = 'bg:#003333'
-Token.Menu.Completions.ProgressBar = 'bg:#00aaaa'
+completion-menu.completion.current = 'bg:#ffffff #000000'
+completion-menu.completion = 'bg:#008888 #ffffff'
+completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
+completion-menu.meta.completion = 'bg:#448888 #ffffff'
+completion-menu.multi-column-meta = 'bg:#aaffff #000000'
+scrollbar.arrow = 'bg:#003333'
+scrollbar = 'bg:#00aaaa'
+selected = '#ffffff bg:#6666aa'
+search = '#ffffff bg:#4444aa'
+search.current = '#ffffff bg:#44aa44'
+bottom-toolbar = 'bg:#222222 #aaaaaa'
+bottom-toolbar.off = 'bg:#222222 #888888'
+bottom-toolbar.on = 'bg:#222222 #ffffff'
+search-toolbar = 'noinherit bold'
+search-toolbar.text = 'nobold'
+system-toolbar = 'noinherit bold'
+arg-toolbar = 'noinherit bold'
+arg-toolbar.text = 'nobold'
+bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
+bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
 
-# Selected text.
-Token.SelectedText = '#ffffff bg:#6666aa'
+# style classes for colored table output
+output.header = "#00ff5f bold"
+output.odd-row = ""
+output.even-row = ""
+output.null = "#808080"
 
-# Search matches. (reverse-i-search)
-Token.SearchMatch = '#ffffff bg:#4444aa'
-Token.SearchMatch.Current = '#ffffff bg:#44aa44'
-
-# The bottom toolbar.
-Token.Toolbar = 'bg:#222222 #aaaaaa'
-Token.Toolbar.Off = 'bg:#222222 #888888'
-Token.Toolbar.On = 'bg:#222222 #ffffff'
-
-# Search/arg/system toolbars.
-Token.Toolbar.Search = 'noinherit bold'
-Token.Toolbar.Search.Text = 'nobold'
-Token.Toolbar.System = 'noinherit bold'
-Token.Toolbar.Arg = 'noinherit bold'
-Token.Toolbar.Arg.Text = 'nobold'
+# SQL syntax highlighting overrides
+# sql.comment = 'italic #408080'
+# sql.comment.multi-line = ''
+# sql.comment.single-line = ''
+# sql.comment.optimizer-hint = ''
+# sql.escape = 'border:#FF0000'
+# sql.keyword = 'bold #008000'
+# sql.datatype = 'nobold #B00040'
+# sql.literal = ''
+# sql.literal.date = ''
+# sql.symbol = ''
+# sql.quoted-schema-object = ''
+# sql.quoted-schema-object.escape = ''
+# sql.constant = '#880000'
+# sql.function = '#0000FF'
+# sql.variable = '#19177C'
+# sql.number = '#666666'
+# sql.number.binary = ''
+# sql.number.float = ''
+# sql.number.hex = ''
+# sql.number.integer = ''
+# sql.operator = '#666666'
+# sql.punctuation = ''
+# sql.string = '#BA2121'
+# sql.string.double-quouted = ''
+# sql.string.escape = 'bold #BB6622'
+# sql.string.single-quoted = ''
+# sql.whitespace = ''
 
 # Favorite queries.
+# You can add your favorite queries here. They will be available in the
+# REPL when you type `\f` or `\f <query_name>`.
 [favorite_queries]
+# example = "SELECT * FROM example_table WHERE id = 1"
+
+# Initial commands to execute when connecting to any database.
+[init-commands]
+# read_only = "SET SESSION TRANSACTION READ ONLY"
+
 
 # Use the -d option to reference a DSN.
+# Special characters in passwords and other strings can be escaped with URL encoding.
 [alias_dsn]
 # example_dsn = mysql://[user[:password]@][host][:port][/dbname]
+
+# Initial commands to execute when connecting to a DSN alias.
+[alias_dsn.init-commands]
+# Define one or more SQL statements per alias (semicolon-separated).
+# example_dsn = "SET sql_select_limit=1000; SET time_zone='+00:00'"
 ```
