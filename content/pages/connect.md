@@ -2,7 +2,7 @@ Title: Connect to database
 Slug: connect
 status: hidden
 
-MyCli requires you to have a MySQL compatible server on your local computer
+Mycli requires you to have a MySQL compatible server on your local computer
 or on a remote server reachable using TCP/IP (a SSH tunnel is commonly used
 for this purpose) or a UNIX domain socket (local computer only).
 You'll also need the right credentials (username and optionally a password).
@@ -31,7 +31,7 @@ It's also possible to supply some of these arguments using environment variables
 
 The following configuration files can be used to configure your connection:
 
-* ~/.myclirc - MyCli configuration file (see `[alias_dsn]` section.
+* ~/.myclirc - mycli configuration file (see `[alias_dsn]` section.
 * DEPRECATED: /etc/my.cnf / ~/.my.cnf - MySQL compatible configuration file
 
 ## Command line arguments
