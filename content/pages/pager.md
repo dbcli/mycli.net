@@ -35,7 +35,7 @@ off lines, _etc_.
 You can configure `less` through environment variables in your shell, or by
 setting the full desired command using the `pager` option in `~/.myclirc`.
 
-Here are some common `less` options and configuration examples:
+Here are some common `less` options:
 
 - `-X` leaves file contents on the screen when `less` exits.
 - `-F` makes `less` quit if the entire output can be displayed on one
@@ -43,10 +43,17 @@ Here are some common `less` options and configuration examples:
 - `-R` displays ANSI color escape sequences in "raw" form.
 - `-S` disables line wrapping. Side-scroll to see long lines.
 
+See `man less` for more information.
+
+Configuration examples:
+
 ```ini
 # This is a popular option in ~/.myclirc:
 pager = 'less -XFR'
 
 # Or, some mycli users like to disable line wrapping.
 pager = 'less -SRXF'
+
+# Here is a fancy example which may require a more recent version of "less".
+pager = 'less -iRSMwF --rscroll=*d→$ --match-shift=10 --use-color -DBky$DCky$DEky$DM--$DN--$DPky$DRWk$DSky$'
 ```
