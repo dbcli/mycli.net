@@ -156,9 +156,12 @@ $ mycli 'mysql://user:password@hostname:port/databasename?tls_version=tlsv1'
 Note that because of the question mark character `?`, most shells will require
 quotation marks around the DSN if URL-style parameters are included.
 
+Values in query parameters may need to have special characters substituted
+with URL escapes, such as `%2F` for `/`.
+
 The following URL-style parameters are recognized:
 
- * `ssl` — corresponds to CLI option `--ssl`
+ * `ssl_mode` — corresponds to CLI option `--ssl_mode`
  * `ssl_ca` — corresponds to CLI option `--ssl-ca`
  * `ssl_capath` — corresponds to CLI option `--ssl-capath`
  * `ssl_cert` — corresponds to CLI option `--ssl-cert`
@@ -166,6 +169,9 @@ The following URL-style parameters are recognized:
  * `ssl_cipher` — corresponds to CLI option `--ssl-cipher`
  * `tls_version` — corresponds to CLI option `--tls-version`
  * `ssl_verify_server_cert` — corresponds to CLI option `--ssl-verify-server-cert`
+ * `socket` — corresponds to CLI option `--socket`
+ * `character_set` — corresponds to CLI option `--character-set`
+ * `keepalive_ticks` — corresponds to CLI option `--keepalive-ticks`
 
 </br>
 
