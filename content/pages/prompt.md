@@ -23,8 +23,11 @@ The prompt is generated using the following format sequences:
  * `\J` - full connection socket path
  * `\k` - connection socket basename OR the port
  * `\K` - full connection socket path OR the port
+ * `\T` - connection SSL/TLS version
  * `\t` - database vendor (Percona, MySQL, MariaDB, TiDB)
  * `\u` - username
+ * `\y` - uptime in seconds (requires frequent trips to the server)
+ * `\Y` - uptime in words (requires frequent trips to the server)
  * `\A` - DSN alias if any
  * `\n` - a newline
  * `\_` - a space
