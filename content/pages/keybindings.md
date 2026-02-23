@@ -13,20 +13,22 @@ similar to the defaults of the `readline` library.
 When Vi mode is enabled you can use modal editing features offered by Vim in
 the REPL.
 
-Mycli also adds some [custom keybindings](https://github.com/dbcli/mycli/blob/main/mycli/key_bindings.py)
+Mycli also adds some [custom keybindings](https://github.com/dbcli/mycli/blob/main/doc/key_bindings.rst)
 which are summarized here along with completion navigation:
 
+ * <kbd>f1</kbd> — open a help browser
  * <kbd>f2</kbd> — toggle smart completions
  * <kbd>f3</kbd> — toggle multi-line mode
  * <kbd>f4</kbd> — toggle Vi/Emacs editing mode
- * <kbd>control</kbd>-<kbd>space</kbd> — summon completions
- * <kbd>tab</kbd> — summon completions + advance in completions
+ * <kbd>control</kbd>-<kbd>space</kbd> — summon completions or advance if present
+ * <kbd>tab</kbd> — summon completions + always advance in candidates
  * <kbd>enter</kbd> — choose a completion candidate
  * <kbd>escape</kbd> — cancel completions popup
  * <kbd>control</kbd>-<kbd>g</kbd> — cancel completions popup
  * <kbd>control</kbd>-<kbd>r</kbd> — search history with [fzf](https://github.com/junegunn/fzf) if available
  * <kbd>alt</kbd>-<kbd>enter</kbd> — add a line break in multi-line mode (or <kbd>escape</kbd>-<kbd>enter</kbd>)
- * arrows — completion navigation
+ * arrows — completion navigation (when popup is present)
+ * <kbd>right-arrow</kbd> — accept full-line history suggestion (when present)
 
 In Emacs mode only (with comma showing a sequence of multiple keystrokes):
 
