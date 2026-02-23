@@ -39,7 +39,7 @@ Aliases in the query are resolved and the columns from the table aliases are sug
 
 ## Fuzzy Matching
 
-The completions are matched using a [built-in fuzzy algorithm](http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python) and [rapidfuzz](https://github.com/rapidfuzz/RapidFuzz).
+The completions are matched using a [built-in fuzzy algorithm](https://blog.amjith.com/fuzzyfinder-in-10-lines-of-python) and [rapidfuzz](https://github.com/rapidfuzz/RapidFuzz).
 
 For example typing 'djmi' will match the table 'django_migrations' because 'djmi' has parts of matching substrings. Here's an example:
 

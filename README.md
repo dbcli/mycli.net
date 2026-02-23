@@ -11,7 +11,7 @@ A website for mycli project.
 `./develop_server.sh start`
 
 ### Accessing
-Open your favorite browser and go to http://localhost:8000.
+Open your favorite browser and go to http://localhost:8000 .
 
 ### Stoping the server
 `./develop_server.sh stop`

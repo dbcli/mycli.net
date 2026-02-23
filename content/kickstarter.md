@@ -30,7 +30,7 @@ a lot of work.
 I knew I needed a video for the kickstarter campaign. I was too camera shy to
 put my face on the video so I chose to do a screencast instead. I learned how
 to use Camtasia and chose to use their 30 day trial to record a screencast. I'm
-a big fan of [VimCasts](http://vimcasts.org), so I emailed Drew Neil (creator of VimCasts) and asked
+a big fan of [VimCasts](https://vimcasts.org), so I emailed Drew Neil (creator of VimCasts) and asked
 for some tips. He gave me useful pointers and I realized that I could record
 the screen and voice separately and then splice them together. This saved me so
 much anxiety because I realized I can't narrate while I'm typing. After about a
@@ -59,14 +59,14 @@ were impressed by pgcli but no pledges for mycli. While at PyCon I was
 approached by an Oracle employee who reminded me that the name "mysql" is
 trademarked and I can't call my tool mysql-cli. I was frustrated but I didn't
 want Oracle coming after my $900, so I decided to call the campaign "CLI for
-MySql and MariaDB". 
+MySql and MariaDB".
 
 During the flight from Montreal (Pycon) to Portland (home), I managed to get
 the first implementation of the tool working. It was fairly straight-forward
 since I had already done it once for pgcli. So now I had a mostly working clone
 of pgcli. I reached out to the local MySQL group in Portland and showed the
 half-working version. This was a successful presentation that earned another
-$100 towards to the campaign. 
+$100 towards to the campaign.
 
 By the third week I was desperate, I tried advertising via google adwords and
 twitters ads. I spent about $50 total, no conversions. By now I started sending
@@ -85,7 +85,7 @@ of pledged from there. Then someone posted it on Reddit and a lot of pgcli
 users started pledging because they wanted to support pgcli and didn't know how
 else to give money. I was humbled by the support. Three days before the end of
 the campaign a ton of coworkers and friends from NewRelic started pledging and
-they pushed the campaign over the goal. 
+they pushed the campaign over the goal.
 
 On the final day TBS pledge ($1500) came through and it put us well over the
 goal. So in the end the campaign looked like it was a grand success. But
@@ -104,7 +104,7 @@ Later I found out that the first week and the last week of Kickstarter
 campaigns are the most active periods. So what I experienced was not out of
 ordinary but it was still an emotional roller-coaster. It was a great
 experience and I learned some valuable lessons in marketing. I wouldn't
-recommend it as a way to fund ongoing development costs of a project. 
+recommend it as a way to fund ongoing development costs of a project.
 
 ps: The name mycli was recommended by an early backer. I don't remember the
 name of the backer but I decided to use that name for my final launch.
