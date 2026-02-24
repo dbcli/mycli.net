@@ -26,12 +26,12 @@ AUTHOR_FEED_RSS = None
 GITHUB_URL = 'https://github.com/dbcli/mycli'
 
 # Blogroll
-LINKS = (('pgcli', 'http://pgcli.com/'),
+LINKS = (('pgcli', 'https://pgcli.com/'),
         )
 
 # Social widget
-SOCIAL = (('twitter', 'http://twitter.com/amjithr'),
-          ('github', 'http://github.com/dbcli/mycli'),
+SOCIAL = (('twitter', 'https://x.com/amjithr'),
+          ('github', 'https://github.com/dbcli/mycli'),
          )
 
 DEFAULT_PAGINATION = 10
