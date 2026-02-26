@@ -12,7 +12,7 @@ Mycli 1.16.0 was released on January 1, 2018 and includes these changes:
 
 ## Features
 
-* Add [DSN aliases]({filename}/pages/loginpath.md#dsn) to the config file (Thanks: [Frederic Aoustin]).
+* Add [DSN aliases]({filename}/pages/connect.md#DSNs) to the config file (Thanks: [Frederic Aoustin]).
 
 ## Bug Fixes
 
