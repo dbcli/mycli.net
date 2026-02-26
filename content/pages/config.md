@@ -18,7 +18,7 @@ All settings which may have been read from `~/.my.cnf` in the past now have
 preferred replacements in `~/.myclirc`.
 
 Mycli supports a few methods of storing user credentials. See the
-[server configuration documentation]({filename}/pages/loginpath.md)
+[connection configuration documentation]({filename}/pages/credentials.md)
 for more information.
 
 ## Checkup
