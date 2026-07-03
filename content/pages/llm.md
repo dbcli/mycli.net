@@ -12,13 +12,16 @@ Alias: `/ai` works the same as `/llm`.
 
 ## Quick Start
 
-1) Make sure mycli is installed with the `[llm]` extras, like
+1) Make sure mycli is installed with the `[llm]` or `[all]` extras, like
+
 ```bash
-pip install 'mycli[llm]'
+pip install --upgrade 'mycli[all]'
 ```
+
 or that the `llm` dependency is installed separately:
+
 ```bash
-pip install llm
+pip install --upgrade llm
 ```
 
 2) From the mycli prompt, configure your API key (only needed for remote providers like OpenAI):
@@ -85,7 +88,8 @@ Aside: <https://ollama.com/> for using local models.
 
 ## Ask Questions With DB Context (default)
 
-Ask your question in quotes. mycli sends database context and extracts a SQL block if present.
+Ask your question in quotes. Mycli sends database context and extracts a SQL block from the
+result if present.
 
 ```text
 World> /llm "Most visited urls?"
@@ -93,7 +97,7 @@ World> /llm "Most visited urls?"
 
 Behavior:
 - Response is printed in the output pane.
-- If the response contains a ```sql fenced block, mycli extracts the SQL and pre-fills it at your prompt.
+- If the response contains a SQL fenced block, mycli extracts the SQL and pre-fills it at your prompt.
 
 ---
 
@@ -103,14 +107,14 @@ Use `-c` to ask a follow‑up that continues the previous conversation with the 
 
 ```text
 World> /llm "Top 10 customers by spend"
--- model returns analysis and a ```sql block; SQL is prefilled
+-- model returns analysis and a SQL fenched block; SQL is prefilled
 World> /llm -c "Now include each customer's email and order count"
 ```
 
 Behavior:
 - Continues the last conversation in the `llm` history.
 - Database context is not re-sent on follow‑ups.
-- If the response includes a ```sql block, the SQL is pre-filled at your prompt.
+- If the response includes a SQL fenched block, the SQL is pre-filled at your prompt.
 
 
 ---
@@ -150,7 +154,7 @@ See: <https://ollama.com/> for details.
 
 ## Customize the Prompt Template
 
-mycli uses a saved `llm` template named `mycli-llm-template` for contextual questions. You can view or edit it:
+Mycli uses a saved `llm` template named `mycli-llm-template` for contextual questions. You can view or edit it:
 
 ```text
 World> /llm templates edit mycli-llm-template
@@ -166,12 +170,12 @@ World> /llm templates show mycli-llm-template
 
 ## Troubleshooting
 
-- No SQL pre-fill: Ensure the model’s response includes a ```sql fenced block. The built‑in prompt encourages this, but some models may omit it; try asking the model to include SQL in a ```sql block.
+- No SQL pre-fill: Ensure the model’s response includes a SQL fenced block. The built‑in prompt encourages this, but some models may omit it; try asking the model to include SQL in a fenced block.
 - Not connected to a database: Contextual questions require a live connection. Connect first. Follow‑ups with `-c` only help after a successful contextual call.
 - Plugin changes not recognized: After `/llm install` or `/llm uninstall`, mycli restarts automatically to load new commands.
 - Provider/API issues: Use `/llm keys list` and `/llm keys set <provider>` to check credentials. Use `/llm models` to confirm available models.
 
----
+----
 
 ## Notes and Safety
 
