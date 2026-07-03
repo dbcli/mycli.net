@@ -4,9 +4,9 @@ status: hidden
 
 ## Introduction
 
-Mycli sends most input you enter to the MySQL server as a SQL statement. There
-is also a set of commands that mycli itself will accept. To see these, type
-`/help` or `/?` at the prompt:
+Mycli sends most input you enter directly to the MySQL server as a SQL
+statement. There is also a set of commands that mycli itself will accept
+locally.  To see these commands, type `/help` or `/?` at the prompt:
 
 ```text
 mycli> /help
@@ -52,24 +52,31 @@ Use \backslash forms when at end-of-line.
 Docs index — https://mycli.net/docs
 ```
 
-Most commands have a long and short form. Most of the commands starting
-with backslash are case sensitive. Commands may be followed by an optional
-semicolon.
+Most commands have a long and short form. Many of the commands starting are
+case sensitive.  Most commands may be followed by an optional semicolon.
 
-* <a name="g"></a> `\G`
+* <a name="G"></a> `\G`
 
     Send the current statement to the server and display the results vertically.
-    This is used instead of a semicolon terminator, e.g. `select 1\G`.
+    This is used instead of a semicolon terminator, _e.g._ `select 1\G`.
+
+* <a name="g"></a> `\g`
+
+    Send the current statement to the server and display the results in the
+    default format.  This is used instead of a semicolon terminator, _e.g._
+    `select 1\g`.
 
 * <a name="clip"></a> `<query>\clip`
 
     Send the current statement to the system clipboard.  This is used at the
-    beginning or end of a statement, e.g. `select 1\clip`.
+    beginning or end of a statement, _e.g._ `select 1\clip`.  At the end of
+    a statement, the backslash form `\clip` must be used to avoid a SQL
+    ambiguity.
 
 * <a name="dt"></a> `/dt`, `/dt[+] [table]`
 
     List the tables in the default database (when used without any parameters).
-    Describe a table (when passed a parameter).
+    Describe a table (when a parameter is passed).
 
     The optional `+` verbose indicator can be used to toggle whether or not the `CREATE TABLE` statement for the table is shown.
 
@@ -78,15 +85,16 @@ semicolon.
 
 * <a name="e"></a> `/edit <filename>`, `<query>\edit`
 
-    Edit the current statement with an editor (uses the environment variable `$EDITOR`)
-    or open a file.  If this is entered with an empty line, it will populate the editor
-    with the previous query.  `/edit` is generally equivalent to the keystroke sequence
-    <kbd>control</kbd>-<kbd>x</kbd> <kbd>control</kbd>-<kbd>e</kbd>.
+    Edit the current statement with an editor (uses the environment variables `$EDITOR`
+    or `$VISUAL`), or open a file.  If this is entered with an empty line, it will
+    populate the editor with the previous query.  At the end of a statement, the backslash
+    form `\edit` must be used to avoid a SQL ambiguity.  `/edit` is generally equivalent to
+    the keystroke sequence <kbd>control</kbd>-<kbd>x</kbd> <kbd>control</kbd>-<kbd>e</kbd>.
 
 * <a name="f"></a> `/f`, `/f <name> [arg, arg, ..]`
 
-    List or execute favorite queries. If the favorite query requires parameters,
-    they can be passed to the query after the name, e.g., `/f users_by_name
+    List or execute named favorite queries.  If the favorite query requires parameters,
+    they can be passed to the query after the name, _e.g._, `/f users_by_name
     "Teddy Roosevelt"`. See [Favorite Queries]({filename}/pages/favorites.md) for more information.
 
 * <a name="fd"></a> `/fd <name>`
@@ -95,7 +103,7 @@ semicolon.
 
 * <a name="fs"></a> `/fs <name> <query>`
 
-    Save a favorite query. Favorite queries support shell-style parameter
+    Save a favorite query.  Favorite queries support shell-style parameter
     substitution. See [Favorite Queries]({filename}/pages/favorites.md) for more information.
 
 * <a name="l"></a> `/l`
@@ -127,7 +135,7 @@ semicolon.
 
 * <a name="connect"></a> `/connect [database]`, `/r [database]`
 
-    Reconnect to the server. You can optionally supply a database name that
+    Reconnect to the server.  You can optionally supply a database name which
     will be set as the default database for your connection.
 
 * <a name="delimiter"></a> `/delimiter <string>`
@@ -141,18 +149,19 @@ semicolon.
 
 * <a name="help"></a> `/help [name]`, `/? [name]`
 
-    Display a help message listing mycli's commands.  As a special case, if
-    optional `name` is given, search for help for `name` on the _server_.
+    Display a help message listing mycli's commands.  If optional `name` is
+    given and it is a mycli `/command`, display help on command.  If `name`
+    is not a mycli `/command` earch for help for `name` on the _server_.
 
 * <a name="nopager"></a> `/nopager`, `/n`
 
-    Disable the use of pager software for outputting query results. For more
+    Disable the use of an external pager for outputting query results. For more
     information see the [pager section]({filename}/pages/pager.md) of the
     web documentation.
 
 * <a name="notee"></a> `/notee`
 
-    Disable output to the tee file. For more information, see the
+    Disable output to a tee file. For more information, see the
     [`/tee` command](#tee).
 
 * <a name="nowarnings"></a> `/nowarnings`, `/w`
@@ -185,7 +194,7 @@ semicolon.
 
 * <a name="source"></a> `/source <filename>`, `/. <filename>`
 
-    Execute the SQL commands from the named file.
+    Execute the SQL commands from `<filename>`.
 
 * <a name="status"></a> `/status`, `/s`
 
@@ -194,18 +203,20 @@ semicolon.
 
 * <a name="system"></a> `/system <command>`
 
-    Execute a shell command and outputs the results.
+    Execute a shell command and output the results.  As a special case,
+    if the command is in the form `cd <directory`, change the working
+    directory for mycli.
 
 * <a name="tableformat"></a> `/tableformat [format]`, `/T [format]`
 
-    Change the interactive tabular output format. Run the command without
+    Change the interactive tabular output format.  Run the command without
     specifying a format to see the possible values.
 
 * <a name="tee"></a> `/tee [-o] <filename>`
 
     Log all queries/commands and their output to `filename`. Defaults to
-    append mode. Use `-o` to overwrite any existing file content. To disable
-    this, see the [`/notee` command](#notee).
+    append mode. Use `-o` to overwrite any existing file content. To disable,
+    see the [`/notee` command](#notee).
 
 * <a name="use"></a> `/use <db_name>`, `/u <db_name>`
 
@@ -218,5 +229,5 @@ semicolon.
 
 * <a name="watch"></a> `/watch [seconds] [-c] query`
 
-    Repeatedly execute a query every `n` seconds. The default interval is `5`
-    seconds. `-c` can be used to clear the screen after every iteration.
+    Repeatedly execute a query every `n` seconds. The default interval is 5
+    seconds. `-c` can be used to clear the screen after each iteration.
