@@ -2,23 +2,27 @@ Title: Editor
 Slug: editor
 status: hidden
 
-One of the most useful slash commands is `\e`. This will launch an editor to
-edit the current query (or previous query, if the current query is blank).
+One of the most useful slash commands is `/edit` or `\edit`. This can be used
+to launch an editor to edit the current query (or previous query, if the
+current line is otherwise blank).
 
+When used at the end-of-line, we must use the backslash form `\edit` to
+avoid ambiguity with valid SQL.
 
 Here are some examples:
 
 ```
+# /edit alone will launch the default editor (read from the $EDITOR or $VISUAL
+# environment variables).  It will put the _previous_ query in the editor,
+# and the query will be populated back into the prompt once the edit session
+# is exited.
+> /edit
 
-# This will launch the default editor (read from $EDITOR env variable).
-# It will put the previous query in the editor's buffer.
-> \e
+# \edit at end-of-line will open the default editor with the query-so-far
+# in the editor.
+> SELECT * FROM \edit
 
-# This will open the default editor with the current query in the buffer.
-> SELECT * FROM \e
-
-# This will open an existing file in the editor and the contents of the file
-  will be populated into the prompt once the file is saved.
-> \e <filename>
-
+# /edit followed by an argument refers to a file.  This will open an existing
+# file in the editor.
+> /edit <filename>
 ```

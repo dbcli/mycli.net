@@ -315,7 +315,7 @@ output.null = "#808080"
 
 # Favorite queries.
 # You can add your favorite queries here. They will be available in the
-# REPL when you type `\f` or `\f <query_name>`.
+# REPL when you type `/f` or `/f <query_name>`.
 [favorite_queries]
 # example = "SELECT * FROM example_table WHERE id = 1"
 

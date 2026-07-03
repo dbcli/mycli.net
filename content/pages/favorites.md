@@ -7,22 +7,22 @@ with a short name.
 
 Commands:
 
-`\f` - list all favorite queries.
+`/f` - list all favorite queries.
 
-`\f <name>` - Invoke a favorite query by its name.
+`/f <name>` - Invoke a favorite query by its name.
 
-`\fs <name> <query>` - Save a new favorite query called `<name>`.
+`/fs <name> <query>` - Save a new favorite query called `<name>`.
 
-`\fd <name>` - Delete an existing favorite query by its name.
+`/fd <name>` - Delete an existing favorite query by its name.
 
 Examples:
 
 ```sql
 # Save a new favorite query.
-> \fs simple select * from abc where a is not Null;
+> /fs simple select * from abc where a is not Null;
 
 # List all favorite queries.
-> \f
+> /f
 +--------+---------------------------------------+
 | Name   | Query                                 |
 |--------+---------------------------------------|
@@ -30,7 +30,7 @@ Examples:
 +--------+---------------------------------------+
 
 # Run a favorite query.
-> \f simple
+> /f simple
 +--------+--------+
 | a      | b      |
 |--------+--------|
@@ -38,7 +38,7 @@ Examples:
 +--------+--------+
 
 # Delete a favorite query.
-> \fd simple
+> /fd simple
 simple: Deleted
 ```
 
@@ -49,12 +49,12 @@ query with parameters as placeholders (e.g. `$1`, `$2`,
 `$3`, _etc._):
 
 ```sql
-\fs user_by_name select * from users where name = '$1'
+/fs user_by_name select * from users where name = '$1'
 ```
 
 When you call a favorite query with parameters, just add the parameters after
 the query's name. You can put quotes around arguments that include spaces.
 
 ```sql
-\f user_by_name "Skelly McDermott"
+/f user_by_name "Skelly McDermott"
 ```
