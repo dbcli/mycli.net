@@ -21,11 +21,13 @@ PAGER set to less.
 Pager disabled.
 ```
 
+</br>
 ## Disable Paging
 
 You can disable the pager by adding `enable_pager = False` to your `~/.myclirc`
 file. See [Configuration](/config) for more information.
 
+</br>
 ## Pager Behavior
 
 On macOS and Linux, the pager will default to `less` for most users. `less`
