@@ -11,7 +11,7 @@ avoid ambiguity with valid SQL.
 
 Here are some examples:
 
-```
+```ini
 # /edit alone will launch the default editor (read from the $EDITOR or $VISUAL
 # environment variables).  It will put the _previous_ query in the editor,
 # and the query will be populated back into the prompt once the edit session
