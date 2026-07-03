@@ -9,15 +9,15 @@ allows you to easily view large result sets one page at a time.
 
 When starting up, mycli checks the `pager` config option in `~/.myclirc`.
 If it's set, then mycli uses its value as the pager. If it's blank, then mycli
-will use the `PAGER` environment variable.
+will use the `$PAGER` environment variable.
 
-Once mycli is started, you can use the `pager` command to change which pager
-mycli uses. Or, `nopager` to disable the pager.
+Once mycli is started, you can use the `/pager` command at the REPL to change
+which pager mycli uses. Or, `/nopager` to disable the pager.
 
 ```
-> pager less
+> /pager less
 PAGER set to less.
-> nopager
+> /nopager
 Pager disabled.
 ```
 
@@ -38,8 +38,7 @@ setting the full desired command using the `pager` option in `~/.myclirc`.
 Here are some common `less` options:
 
 - `-X` leaves file contents on the screen when `less` exits.
-- `-F` makes `less` quit if the entire output can be displayed on one
-  screen.
+- `-F` makes `less` quit if the entire output can be displayed on one screen.
 - `-R` displays ANSI color escape sequences in "raw" form.
 - `-S` disables line wrapping. Side-scroll to see long lines.
 
