@@ -17,7 +17,7 @@ Commands:
 
 Examples:
 
-```sql
+```text
 # Save a new favorite query.
 > /fs simple select * from abc where a is not Null;
 
