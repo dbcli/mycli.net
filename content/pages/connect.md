@@ -4,9 +4,7 @@ status: hidden
 
 Mycli requires you to have a MySQL compatible server to connect with, reachable
 using TCP/IP or a UNIX Domain Socket (local computer only).  You'll also need
-the right credentials (a username, and optionally a password).
-
-Please note the hostname is part of the credentials for MySQL!
+the right credentials (a username, hostname, and optionally a password).
 
 The following default values are used to connect:
 
@@ -17,22 +15,21 @@ The following default values are used to connect:
 * `port` — 3306
 
 These can be overruled by your configuration files and command-line
-arguments (command-line arguments take precedence over configuration files).
+arguments.  Ccommand-line arguments take precedence over configuration files.
 
-The database name can be changed at runtime using the REPL (`use` or `connect`
+The database name can be changed at runtime using the REPL (`/use` or `/connect`
 commands).
 
-It's also possible to supply some of these arguments using environment variables:
+It's also possible to supply some of these values using environment variables:
 
-* `$MYSQL_HOST` — hostname
-* `$MYSQL_TCP_PORT` — port
-* `$MYSQL_UNIX_PORT` — UNIX domain socket
+* `$MYSQL_USER` — username
 * `$MYSQL_PWD` — password (please note this might not be secure on some multi user systems!)
+* `$MYSQL_HOST` — hostname
+* `$MYSQL_UNIX_SOCKET` — UNIX domain socket
+* `$MYSQL_TCP_PORT` — port
 
-The following configuration files can be used to configure your connection:
-
-* [`~/.myclirc`]({filename}/pages/config.md) — mycli configuration file (see `[connection]` and `[alias_dsn]` sections).
-* **DEPRECATED**: `/etc/my.cnf` and `~/.my.cnf` — MySQL compatible configuration files
+In [`~/.myclirc`]({filename}/pages/config.md), the sections `[connection]` and `[alias_dsn]`
+may also govern connections.
 
 </br>
 
@@ -45,7 +42,7 @@ The database name or DSN can be given alone as a positional argument.
 DSNs are usually in the form `mysql://user:password@hostname:port/databasename`;
 see [DSNs](#DSNs) below for more detail.
 
-### `-h TEXT`, `--host TEXT`
+### `-h TEXT`, `--host TEXT`, `--hostname TEXT`
 
 Hostname of the server, as a name or IP address.  Not needed when using a socket
 to connect.
@@ -54,7 +51,7 @@ to connect.
 
 Port number to use on the host.  Not needed when using a socket to connect.
 
-### `-u TEXT`, `--user TEXT`
+### `-u TEXT`, `--user TEXT`, `--username TEXT`
 
 User name to connect to the server.
 
@@ -65,9 +62,9 @@ combination.
 
 ### `-p TEXT`, `--pass TEXT`, `--password TEXT`
 
-Password to connect to the sever.  If given in the last position on the command
-line without an argument, this means "prompt for the password" (which may be
-the default anyway).
+With argument, a password to connect to the sever.  If given in the last
+position on the command line _without_ an argument, `--password` means "prompt
+for the password" (which may be the default behavior anyway).
 
 ### `-D TEXT`, `--database TEXT`
 
@@ -76,7 +73,7 @@ of the connection parameters.
 
 ### `-d TEXT`, `--dsn TEXT`
 
-Use a DSN by alias, as configured in the `[alias_dsn]` section of [`~/.myclirc`]({filename}/pages/config.md).
+DSN or alias, as configured in the `[alias_dsn]` section of [`~/.myclirc`]({filename}/pages/config.md).
 
 See the alias choices by running `mycli --list-dsn`.
 
@@ -123,13 +120,13 @@ Verify server's "Common Name" in its certificate.  Default is off.
 
 The character set to negotiate for the connection, defaulting to `utf8mb4`.
 
+### `--keepalive-ticks INTEGER`
+
+Send regular keepalive pings to the server, roughly every INTEGER seconds.
+
 ### `--local-infile BOOLEAN`
 
 Enable/disable `LOAD DATA LOCAL INFILE`.
-
-### `--defaults-file PATH`
-
-**DEPRECATED**: Only read MySQL options from the given pathname, ignoring `/etc/my.cnf` and `~/.my.cnf`.
 
 ### `--myclirc PATH`
 
@@ -161,7 +158,7 @@ with URL escapes, such as `%2F` for `/`.
 
 The following URL-style parameters are recognized:
 
- * `ssl_mode` — corresponds to CLI option `--ssl_mode`
+ * `ssl_mode` — corresponds to CLI option `--ssl-mode`
  * `ssl_ca` — corresponds to CLI option `--ssl-ca`
  * `ssl_capath` — corresponds to CLI option `--ssl-capath`
  * `ssl_cert` — corresponds to CLI option `--ssl-cert`
