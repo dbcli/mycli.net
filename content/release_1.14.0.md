@@ -15,7 +15,7 @@ Mycli 1.14.0 was released on December 22, 2017 and includes these changes:
 * Add a [`watch` command]({filename}/pages/commands.md#watch) to repeat a query every `N` seconds (defaults to 5)
   (Thanks: [David Caro]).
 * Default to unix socket connection if host and port are unspecified. This
-  simplifies authentication on some systems and matches mysql behaviour. See
+  simplifies authentication on some systems and matches mysql behavior. See
   the [config documentation]({filename}/pages/config.md) for more information on
   specifying connection information.
 * Add [positional parameters]({filename}/pages/favorites.md) to favorite queries (Thanks: [Scrappy Soft]).
