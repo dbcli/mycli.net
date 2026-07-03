@@ -25,8 +25,9 @@ It's also possible to supply some of these values using environment variables:
 * `$MYSQL_USER` — username
 * `$MYSQL_PWD` — password (please note this might not be secure on some multi user systems!)
 * `$MYSQL_HOST` — hostname
-* `$MYSQL_UNIX_SOCKET` — UNIX domain socket
-* `$MYSQL_TCP_PORT` — port
+* `$MYSQL_UNIX_SOCKET` — Unix Domain Socket
+* `$MYSQL_TCP_PORT` — TCP port
+* `$MYSQL_DSN` — complete DSN (Data Source Name)
 
 In [`~/.myclirc`]({filename}/pages/config.md), the sections `[connection]` and `[alias_dsn]`
 may also govern connections.
@@ -57,7 +58,7 @@ User name to connect to the server.
 
 ### `-S PATH`, `--socket PATH`
 
-A Unix Domain Socket file to use for the connection, instead of a host/port
+A Unix Domain Socket path to use for the connection, instead of a host/port
 combination.
 
 ### `-p TEXT`, `--pass TEXT`, `--password TEXT`
@@ -195,5 +196,5 @@ $ mycli mysql://my_user@my_host.com:3306/my_database
 Connect using a DSN alias:
 
 ```bash
-$ mycli --dsn server1
+$ mycli server1
 ```
