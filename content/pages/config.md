@@ -12,11 +12,6 @@ The config file is created when mycli is launched for the very first time.
 Updates to the file are not overwritten by subsequent launches of mycli or
 when updating the version of mycli.  (See "Checkup" below).
 
-Mycli also currently reads the `[client]` and `[mysqld]` sections of MySQL's
-option file, `~/.my.cnf` but this is **deprecated**.  See [Issue 1490](https://github.com/dbcli/mycli/issues/1490).
-All settings which may have been read from `~/.my.cnf` in the past now have
-preferred replacements in `~/.myclirc`.
-
 Mycli supports a few methods of storing user credentials. See the
 [connection configuration documentation]({filename}/pages/credentials.md)
 for more information.
@@ -53,9 +48,24 @@ show_warnings = False
 # possible completions will be listed.
 smart_completion = True
 
-# Minimum characters typed before offering completion suggestions.
+# Minimum characters typed before offering completion suggestions.  Forward
+# slash for a command is an exception which always offers completions.
 # Suggestion: 3.
 min_completion_trigger = 1
+
+# Prefetch completion metadata for schemas in the background after launch.
+# Possible values:
+# always = prefetch all schemas (default)
+# never  = do not prefetch any schemas
+# listed = prefetch only the schemas named in prefetch_schemas_list
+prefetch_schemas_mode = always
+
+# Comma-separated list of schemas to prefetch when
+# prefetch_schemas_mode = listed.  Ignored in other modes.
+prefetch_schemas_list =
+
+# Expand whole DSN alias values in the form ${VAR} from the environment.
+expand_dsn_alias_env_vars = False
 
 # Multi-line mode allows breaking up the sql statements into multiple lines. If
 # this is set to True, then the end of the statements must have a semi-colon.
@@ -99,11 +109,11 @@ beep_after_seconds = 0
 # Table format. Possible values: ascii, ascii_escaped, csv, csv-noheader,
 # csv-tab, csv-tab-noheader, double, fancy_grid, github, grid, html, jira,
 # jsonl, jsonl_escaped, latex, latex_booktabs, mediawiki, minimal, moinmoin,
-# mysql, mysql_unicode, orgtbl, pipe, plain, psql, psql_unicode, rst, simple,
-# sql-insert, sql-update, sql-update-1, sql-update-2, textile, tsv,
-# tsv_noheader, vertical.
-# Recommended: ascii.
-table_format = ascii
+# mysql, mysql_unicode, mysql_heavy, orgtbl, pipe, plain, psql, psql_unicode,
+# rst, simple, sql-insert, sql-update, sql-update-1, sql-update-2, textile,
+# tsv, tsv_noheader, vertical.
+# Recommended: mysql_unicode.
+table_format = mysql_unicode
 
 # Redirected otuput format
 # Recommended: csv.
@@ -152,6 +162,7 @@ wider_completion_menu = False
 # * \P - AM/PM
 # * \d - selected database/schema
 # * \h - hostname of the server
+# * \H - shortened hostname of the server
 # * \p - connection port
 # * \j - connection socket basename
 # * \J - full connection socket path
@@ -160,16 +171,61 @@ wider_completion_menu = False
 # * \T - connection SSL/TLS version
 # * \t - database vendor (Percona, MySQL, MariaDB, TiDB)
 # * \u - username
+# * \w - number of warnings, or "(none)" (requires frequent trips to the server)
+# * \W - number of warnings, or the empty string (requires frequent trips to the server)
 # * \y - uptime in seconds (requires frequent trips to the server)
 # * \Y - uptime in words (requires frequent trips to the server)
 # * \A - DSN alias
 # * \n - a newline
 # * \_ - a space
-# * \x1b[...m - an ANSI escape sequence (can style with color)
+# * \\ - a literal backslash
+# * \x1b[...m - an ANSI escape sequence (can style with color or attributes)
+#   ANSI color example: prompt = '\x1b[31mroot\x1b[0m@localhost:\d> '
+# * \<html> - a leading sequence indicating that the rest of the prompt be styled like HTML.
+#   See https://python-prompt-toolkit.readthedocs.io/en/stable/pages/printing_text.html#html .
+#   Characters such as "&" or literal "<" and ">" must be HTML-escaped in this mode.
+#   HTML styles cannot be combined with ANSI sequences.  HTML mode takes precedence.
+#   HTML color example: prompt = '\<html><red><u>root</u></red>@localhost:\d&gt; '
+#
 prompt = '\t \u@\h:\d> '
 prompt_continuation = '->'
 
-# Skip intro info on startup and outro info on exit
+# Use the same prompt format strings to construct a status line in the toolbar,
+# where \B in the first position refers to the default toolbar showing keystrokes
+# and state.  Example:
+#
+#     toolbar = '\B\d \D'
+#
+# If \B is included, the additional content will begin on the next line.  More
+# lines can be added with \n.  If \B is not included, the customized toolbar
+# can be a single line.  An empty value is the same as the default "\B".  The
+# special literal value "None" will suppress the toolbar from appearing.
+toolbar = ''
+
+# Use the same prompt format strings to construct a terminal tab title.
+# The original XTerm docs call this title the "window title", but it now
+# probably refers to a terminal tab.  This title is only updated as frequently
+# as the database is changed.
+terminal_tab_title = ''
+
+# Use the same prompt format strings to construct a terminal window title.
+# The original XTerm docs call this title the "icon title", but it now
+# probably refers to a terminal window which contains tabs.  This title is
+# only updated as frequently as the database is changed.
+terminal_window_title = ''
+
+# Use the same prompt format strings to construct a window title in a terminal
+# multiplexer.  Currently only tmux is supported.  This title is only updated
+# as frequently as the database is changed.
+multiplex_window_title = ''
+
+# Use the same prompt format strings to construct a pane title in a terminal
+# multiplexer.  Currently only tmux is supported.  This title is only updated
+# as frequently as the database is changed.
+multiplex_pane_title = ''
+
+# Skip intro info on startup and outro info on exit, and generally reduce
+# feedback.  This is equivalent to giving --quiet at the command line.
 less_chatty = False
 
 # Use alias from --login-path instead of host name in prompt
@@ -188,9 +244,6 @@ enable_pager = True
 # Choose a specific pager
 pager = 'less'
 
-# whether to show verbose warnings about the transition away from reading my.cnf
-my_cnf_transition_done = False
-
 # Whether to store and retrieve passwords from the system keyring.
 # See the documentation for https://pypi.org/project/keyring/ for your OS.
 # Note that the hostname is considered to be different if short or qualified.
@@ -198,9 +251,18 @@ my_cnf_transition_done = False
 # A password can be reset with --use-keyring=reset at the CLI.
 use_keyring = False
 
+[search]
+
+# Whether to apply syntax highlighting to the preview window in fuzzy history
+# search.  There is a small performance penalty to enabling this.  The "pygmentize"
+# CLI tool must also be available.  The syntax style from the "syntax_style"
+# option will be respected, though additional customizations from [colors] will
+# not be applied.
+highlight_preview = False
+
 [connection]
 
-# character set for connections without --charset being set
+# character set for connections without --character-set being set
 default_character_set = utf8mb4
 
 # whether to enable LOAD DATA LOCAL INFILE for connections without --local-infile being set
@@ -212,9 +274,11 @@ default_keepalive_ticks = 0
 
 # Sets the desired behavior for handling secure connections to the database server.
 # Possible values:
-# auto = SSL is preferred. Will attempt to connect via SSL, but will fallback to cleartext as needed.
-# on = SSL is required. Will attempt to connect via SSL and will fail if a secure connection is not established.
-# off = do not use SSL. Will fail if the server requires a secure connection.
+# auto = SSL is preferred for TCP/IP connections. Will attempt to connect via SSL, but will fall
+#        back to cleartext as needed.  Will not attempt to connect with SSL over local sockets.
+# on   = SSL is required. Will attempt to connect via SSL even on a local socket, and will fail if
+#        a secure connection is not established.
+# off  = do not use SSL. Will fail if the server requires a secure connection.
 default_ssl_mode = auto
 
 # SSL CA file for connections without --ssl-ca being set
@@ -255,8 +319,33 @@ control_d = exit
 # possible values: auto, fzf, reverse_isearch
 control_r = auto
 
-# Custom colors for the completion menu, toolbar, etc.
+# comma-separated list: toolkit_default, summon, advancing_summon, prefixing_summon, advance, cancel
+#
+# * toolkit_default - ignore other behaviors and use prompt_toolkit's default bindings
+# * summon - when completions are not visible, summon them
+# * advancing_summon - when completions are not visible, summon them _and_ advance in the list
+# * prefixing_summon - when completions are not visible, summon them _and_ insert the common prefix
+# * advance - when completions are visible, advance in the list
+# * cancel - when completions are visible, toggle the list off
+control_space = summon, advance
+
+# comma-separated list: toolkit_default, summon, advancing_summon, prefixing_summon, advance, cancel
+tab = advancing_summon, advance
+
+# How long to wait for an Escape key sequence in vi mode.
+# 0.5 seconds is the prompt_toolkit default, but vi users may find that too long.
+# Shorter values mean that "Escape" alone is recognized more quickly.
+vi_ttimeoutlen = 0.1
+
+# How long to wait for an Escape key sequence in Emacs mode.
+emacs_ttimeoutlen = 0.5
+
+# Custom colors for the completion menu, toolbar, etc, with actual support
+# depending on the terminal, and the property being set.
+# Colors: #ffffff, bg:#ffffff, border:#ffffff.
+# Attributes: (no)blink, bold, dim, hidden, inherit, italic, reverse, strike, underline.
 [colors]
+# Completion menus
 completion-menu.completion.current = 'bg:#ffffff #000000'
 completion-menu.completion = 'bg:#008888 #ffffff'
 completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
@@ -264,27 +353,47 @@ completion-menu.meta.completion = 'bg:#448888 #ffffff'
 completion-menu.multi-column-meta = 'bg:#aaffff #000000'
 scrollbar.arrow = 'bg:#003333'
 scrollbar = 'bg:#00aaaa'
+
+# The prompt
+prompt = ''
+continuation = ''
+
+# Colored table output (query results)
+output.table-separator = ""
+output.header = "#00ff5f bold"
+output.odd-row = ""
+output.even-row = ""
+output.null = "#808080"
+output.status = ""
+output.status.warning-count = ""
+output.timing = ""
+
+# Selected text (native selection; currently unused)
 selected = '#ffffff bg:#6666aa'
+
+# Search matches (for reverse i-search, not fuzzy search)
 search = '#ffffff bg:#4444aa'
 search.current = '#ffffff bg:#44aa44'
+
+# UI elements: bottom toolbar
 bottom-toolbar = 'bg:#222222 #aaaaaa'
 bottom-toolbar.off = 'bg:#222222 #888888'
 bottom-toolbar.on = 'bg:#222222 #ffffff'
+bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
+bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
+
+# UI elements: other toolbars (currently unused)
 search-toolbar = 'noinherit bold'
 search-toolbar.text = 'nobold'
 system-toolbar = 'noinherit bold'
 arg-toolbar = 'noinherit bold'
 arg-toolbar.text = 'nobold'
-bottom-toolbar.transaction.valid = 'bg:#222222 #00ff5f bold'
-bottom-toolbar.transaction.failed = 'bg:#222222 #ff005f bold'
 
-# style classes for colored table output
-output.header = "#00ff5f bold"
-output.odd-row = ""
-output.even-row = ""
-output.null = "#808080"
+# SQL enhacements: matching brackets
+matching-bracket.cursor = '#ff8888 bg:#880000'
+matching-bracket.other = '#000000 bg:#aacccc'
 
-# SQL syntax highlighting overrides
+# SQL syntax highlighting overrides: normally defined by main.syntax_style
 # sql.comment = 'italic #408080'
 # sql.comment.multi-line = ''
 # sql.comment.single-line = ''
@@ -315,14 +424,13 @@ output.null = "#808080"
 
 # Favorite queries.
 # You can add your favorite queries here. They will be available in the
-# REPL when you type `/f` or `/f <query_name>`.
+# REPL when you type `\f` or `\f <query_name>`.
 [favorite_queries]
 # example = "SELECT * FROM example_table WHERE id = 1"
 
 # Initial commands to execute when connecting to any database.
 [init-commands]
 # read_only = "SET SESSION TRANSACTION READ ONLY"
-
 
 # Use the -d option to reference a DSN.
 # Special characters in passwords and other strings can be escaped with URL encoding.
