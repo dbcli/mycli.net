@@ -1,0 +1,24 @@
+[project]
+name = 'mycli_net'
+description = ''
+authors = []
+readme = 'README.md'
+requires-python = '>=3.11.0'
+dynamic = ['version']
+
+[dependency-groups]
+mycli_net = [
+    'Markdown',
+    'pelican',
+]
+
+[tool.setuptools]
+packages = [ 'mycli_net' ]
+
+[tool.setuptools_scm]
+
+[tool.uv]
+package = false
+default-groups = [
+    'mycli_net',
+]

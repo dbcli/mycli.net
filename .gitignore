@@ -64,3 +64,6 @@ output
 # PyCharm
 .idea/
 .hugo_build.lock
+
+# uv
+uv.lock
