@@ -35,9 +35,20 @@ overwritten or updated during upgrades.
 Those who prefer the XDG config file layout may move `~/.myclirc` to
 `~/.config/mycli/myclirc` where it will also be read.
 
+## From the REPL
+
+The configuration which governs the current session can be inspected
+from the REPL using the `/config` command.  Example:
+
+```sql
+/config search pager
+```
+
+See `/config help` for more.
+
 ## Latest Config File
 
-The latest version of the system settings file can always be found at
+The latest version of the package defaults settings file can always be found at
 
  * https://github.com/dbcli/mycli/blob/main/mycli/myclirc
 
