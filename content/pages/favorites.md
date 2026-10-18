@@ -19,14 +19,14 @@ Examples:
 
 ```text
 # Save a new favorite query.
-> /fs simple select * from abc where a is not Null;
+> /fs simple SELECT * FROM abc WHERE a IS NOT NULL;
 
 # List all favorite queries.
 > /f
 +--------+---------------------------------------+
 | Name   | Query                                 |
 |--------+---------------------------------------|
-| simple | SELECT * FROM abc where a is not NULL |
+| simple | SELECT * FROM abc WHERE a IS NOT NULL |
 +--------+---------------------------------------+
 
 # Run a favorite query.
@@ -48,7 +48,7 @@ Favorite queries support shell-style parameter substitution. Save your favorite
 query with parameters as placeholders (_e.g._ `$1`, `$2`,`$3`, _etc._):
 
 ```sql
-/fs user_by_name select * from users where name = '$1'
+/fs user_by_name SELECT * FROM users WHERE name = '$1'
 ```
 
 When you call a favorite query with parameters, just add the parameters after
