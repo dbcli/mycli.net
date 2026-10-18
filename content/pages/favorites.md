@@ -4,12 +4,23 @@ status: hidden
 
 Favorite Queries are a way to save frequently used queries with a short name.
 
-Commands:
+Short Commands:
 
  * `/f` - List all favorite queries.
  * `/f <name>` - Invoke a favorite query by its name.
  * `/fs <name> <query>` - Save a new favorite query called `<name>`.
  * `/fd <name>` - Delete an existing favorite query by its name.
+
+Alternative Interface:
+
+ * `/favorite delete <name>` - Delete a favorite query by its name.
+ * `/favorite edit <name>` - Edit a favorite query in an editor.
+ * `/favorite eval <name>` - Evaluate a favorite query, performing parameter substitution, without executing it.
+ * `/favorite help` - Help on the `/favaorite` command.
+ * `/favorite list` - List all favorite queries.
+ * `/favorite reload` - Reload favorite queries from configuration files.
+ * `/favorite run <name>` - Invoke a favorite query.
+ * `/favorite save <name> <query>` - Save a new favorite query called `<name>`.
 
 Examples:
 
