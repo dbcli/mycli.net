@@ -27,13 +27,22 @@ $ mycli --checkup
 ```
 
 There could be a substantial number of settings not present in your
-`~/.myclirc` because of the fact that the user configuration is not
+`~/.myclirc` because of the fact that the user's configuration is not
 overwritten or updated during upgrades.
 
 ## XDG Layout
 
 Those who prefer the XDG config file layout may move `~/.myclirc` to
 `~/.config/mycli/myclirc` where it will also be read.
+
+## Latest Config File
+
+The latest version of the system settings file can always be found at
+
+ * https://github.com/dbcli/mycli/blob/main/mycli/myclirc
+
+though note that that the repository content may reflect recent development
+which is _ahead_ of released features.
 
 ## Sample Config File
 
@@ -44,9 +53,50 @@ Those who prefer the XDG config file layout may move `~/.myclirc` to
 # after executing a SQL statement when applicable.
 show_warnings = False
 
-# Enables context sensitive auto-completion. If this is disabled the all
+# Enables context sensitive auto-completion. If this is disabled then all
 # possible completions will be listed.
 smart_completion = True
+
+# Methods to find completion candidates, in priority order.  Empty means the
+# default list.  Filename matching requires perfect and/or slash_words to be
+# listed.  Polars completions uses its own methods.
+# * perfect - exact leading match
+# * regex - ordered charater match with limited intervening spans ("rgx" matches "regex")
+# * under_words - like regex but follows underscores ("uw" matches "under_words")
+# * slash_words - like regex but follows slahes ("sw" matches "slash/words")
+# * camel_case - like regex but follows capitalization ("cc" matches "CamelCase")
+# * rapidfuzz - true approximate matching, _ie_ autcorrect
+completion_match_order = perfect, regex, under_words, slash_words, camel_case, rapidfuzz
+
+# Break completion candiate sorting ties by
+# * frecency - history frequency combined with recency, the default
+# * length - shortest first
+# * lexicographic - alphabetical, ignoring case
+completion_tiebreaker = frecency
+
+# Maximum intervening span length between input characters for regex completion
+# candidate matches.  Empty uses the default of 3.  Higher is more liberal, but
+# carries a perforance penalty.
+regex_match_distance = 3
+
+# Minimum input characters before using rapidfuzz approximate matching.
+# Empty uses the default of 4.  Set to 0 or less to remove the minimum.
+rapidfuzz_min_length = 4
+
+# Minimum rapidfuzz candidate length as a fraction of the input length.
+# Empty uses 0.67.  Lower is more liberal.  Set to 0 or less to suppress
+# the length filter.
+rapidfuzz_length_coverage = 0.67
+
+# Minimum rapidfuzz similarity score (0-100).  Lower is more liberal.
+# Empty uses the default of 75.
+rapidfuzz_score_cutoff = 75
+
+# Text appended to indexed column names in the completion menu.  This text is
+# not inserted into the query. Leave empty to disable the marker.  Quote values
+# containing spaces, commas, or comment characters.
+# Alternative: ' [indexed]'
+indexed_column_suffix = *
 
 # Minimum characters typed before offering completion suggestions.  Forward
 # slash for a command is an exception which always offers completions.
@@ -70,7 +120,8 @@ expand_dsn_alias_env_vars = False
 # Multi-line mode allows breaking up the sql statements into multiple lines. If
 # this is set to True, then the end of the statements must have a semi-colon.
 # If this is set to False then sql statements can't be split into multiple
-# lines. End of line (return) is considered as the end of the statement.
+# lines. End of line (Return) is considered as the end of the statement.
+# When True, saving a favorite query requires pressing Return twice.
 multi_line = False
 
 # Destructive warning mode will alert you before executing a sql statement
@@ -86,6 +137,14 @@ destructive_keywords = DROP SHUTDOWN DELETE TRUNCATE ALTER UPDATE
 # interactive query history location.
 history_file = ~/.mycli-history
 
+# Number of recent history entries used to calculate frecency. Set to 0 or
+# leave empty to disable frecency calculation entirely.
+frecency_history_entries = 1000
+
+# Number of REPL entries between frecency recalculation. Set to 0 to disable
+# periodic recalculation.
+frecency_refresh_interval = 50
+
 # log_file location.
 log_file = ~/.mycli.log
 
@@ -100,8 +159,26 @@ log_level = INFO
 # Timing of SQL statements and table rendering, or LLM commands.
 timing = True
 
+# Seconds between query state and elapsed time updates, off if zero.  Disabling
+# this saves a second connection to the server.  If set to a very low positive
+# value, would lead to excessive SHOW PROCESSLIST queries.  0.5 is probably a
+# good lower bound.
+show_query_state_interval = 0.5
+
 # Show the full SQL when running a favorite query. Set to False to hide.
 show_favorite_query = True
+
+# Load additional favorite queries from the [favorite_queries] section of this
+# file.  Favorites in the user's configuration file take precedence over the
+# shared file.  The path must be absolute after expanding ~.
+# Example: /usr/local/etc/mycli/shared-favorites.ini
+shared_favorites_file =
+
+# Load additional DSN aliases from the [alias_dsn] section of this file. DSN
+# aliases in the user's configuration file take precedence over the shared
+# file. The path must be absolute after expanding ~.
+# Example: /usr/local/etc/mycli/shared-dsns.ini
+shared_dsns_file =
 
 # Beep after long-running queries are completed; 0 to disable.
 beep_after_seconds = 0
@@ -132,9 +209,10 @@ numeric_alignment = right
 # to hex rendering if not possible.
 binary_display = hex
 
-# A command to run after a successful output redirect, with {} to be replaced
-# with the escaped filename.  Mac example: echo {} | pbcopy.  Escaping is not
-# reliable/safe on Windows.
+# A command to run after a successful Parquet save with ".>" or shell output
+# redirect with "$>".  The sequence "{}" will be replaced by the escaped
+# destination filename.  Mac example: echo {} | pbcopy.
+# Escaping is not reliable/safe on Windows.
 post_redirect_command =
 
 # Syntax coloring style. Possible values (many support the "-dark" suffix):
@@ -161,6 +239,7 @@ wider_completion_menu = False
 # * \s - seconds of the current time
 # * \P - AM/PM
 # * \d - selected database/schema
+# * \e - current edit mode (emacs or vi)
 # * \h - hostname of the server
 # * \H - shortened hostname of the server
 # * \p - connection port
@@ -175,6 +254,7 @@ wider_completion_menu = False
 # * \W - number of warnings, or the empty string (requires frequent trips to the server)
 # * \y - uptime in seconds (requires frequent trips to the server)
 # * \Y - uptime in words (requires frequent trips to the server)
+# * \b - "[TX]" when in a transaction, otherwise empty (requires frequent trips to the server)
 # * \A - DSN alias
 # * \n - a newline
 # * \_ - a space
@@ -244,12 +324,84 @@ enable_pager = True
 # Choose a specific pager
 pager = 'less'
 
+# Comma-separated sources to respect for a password, in order of precedence.
+# Valid choices:
+# * prompt         # plain trailing --password at the CLI
+# * literal        # --password=<literal> at the CLI
+# * file           # --password-file=<file> at the CLI
+# * environment    # $MYSQL_PWD environment variable
+# * dsn            # mysql://user:password@ field in a DSN
+# * boundary       # value provided by Boundary client
+# * vault          # value retrieved from "vault kv get"
+# * login_path     # --login-path=<path> at the CLI
+# * keyring        # value retrieved from system keyring
+# * fallback       # interactive prompt after a passwordless connection fails
+# If "fallback" is given, it must come last.
+password_sources = prompt, literal, file, environment, dsn, boundary, vault, login_path, keyring, fallback
+
 # Whether to store and retrieve passwords from the system keyring.
+# * False - never use keyring
+# * True - always use keyring
+# * auto - use keyring unless currently in an SSH connection
 # See the documentation for https://pypi.org/project/keyring/ for your OS.
 # Note that the hostname is considered to be different if short or qualified.
 # This can be overridden with --use-keyring= at the CLI.
 # A password can be reset with --use-keyring=reset at the CLI.
+# Recommended: auto
 use_keyring = False
+
+# Comma-separated password sources eligible to be saved in the keyring.
+# Valid choices: same as password_sources (above).
+# use_keyring must be True or auto.
+keyring_sources = prompt, literal, file, environment, dsn, login_path, fallback
+
+[editor]
+
+# Command line to invoke for /edit, instead of respecting the $VISUAL/$EDITOR
+# environment variables.  Suggestions:
+# * VS Code: code --wait
+# * Vim: vim
+# * Emacs: emacsclient
+# For emacsclient, first start the server with "M-x server-start".
+editor_command =
+
+[explorer]
+
+# Command to invoke for output of queries ending in \x, instead of the pager.
+# The command should accept query results on the standard input.
+# Suggestions:
+# * fzf --no-height --header-lines=3 --layout=reverse  (good with tabular output formats)
+# * csvlens                                            (good with format csv)
+# * jless                                              (good with format jsonl)
+explorer_command = fzf --no-height --header-lines=3 --layout=reverse
+
+# Format to emit output for queries ending in \x.
+# Suggestions: see explorer_command above.
+format = mysql_unicode
+
+# Whether to remove the last line from the formatted output.
+trim_footer = False
+
+[dataframe]
+
+# How to display inline image results in a terminal emulator. Possible values:
+# * kitty
+# * iterm2
+# empty to disable
+image_protocol = kitty
+
+# PNG plot resolution in pixels per inch. Must be a positive integer.
+# The apparent size is a combination of plot_ppi and plot_scale_factor.
+plot_ppi = 200
+
+# PNG plot resolution multiplier. Must be a positive number.
+# The apparent size is a combination of plot_ppi and plot_scale_factor.
+plot_scale_factor = 1.0
+
+# Altair theme for rendering plots. Examples: carbong90, dark, default.
+# Available themes depend on the installed libraries.  See
+# https://github.com/vega/vega-themes/#included-themes
+plot_theme = carbong90
 
 [search]
 
@@ -340,6 +492,67 @@ vi_ttimeoutlen = 0.1
 # How long to wait for an Escape key sequence in Emacs mode.
 emacs_ttimeoutlen = 0.5
 
+[ssh]
+# Path to the ssh executable used by --ssh-jump.
+ssh_executable = ssh
+
+# Options to pass to the ssh executable when making a tunnel.
+# The defaults may need to be changed if not using OpenSSH.
+ssh_options = -a -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o IPQoS=af13 -o LogLevel=FATAL
+
+# Method for establishing the local side of the SSH tunnel: auto, port, socket.
+# auto means: port if on Windows, socket otherwise.
+tunnel_method = auto
+
+[kubectl]
+# Path to the kubectl executable used by --kubectl-resource.
+kubectl_executable = kubectl
+
+# Options to pass to "kubectl port-forward" before the resource name.
+# This can be used, for example, to set the context.
+kubectl_options =
+
+[vault]
+# Path to the vault executable used for Vault integration.
+vault_executable = vault
+
+# URL for VAULT_ADDR, if the environment variable is unset.
+address =
+
+# Default mount, which can be overridden by --vault-mount at the CLI.
+default_mount =
+
+# Field/property containing the password, if --vault-password-field is not provided.
+default_password_field = password
+
+# Field/property containing the username, if --vault-username-field is not provided.
+default_username_field = username
+
+[boundary]
+# Path to the HashiCorp Boundary executable used by --boundary-id.
+boundary_executable = boundary
+
+# Address of the Boundary controller. If empty, use Boundary's default resolution.
+address =
+
+# Boundary auth method ID. If empty, use BOUNDARY_AUTH_METHOD_ID from the environment.
+auth_method_id =
+
+# Additional options passed to the "boundary connect" command.
+boundary_options =
+
+# Command used to test whether Boundary authentication is valid.
+# If empty, establishing the tunnel will fail when not authenticated.
+# If set, boundary_auth_command must also be set.
+# Example: boundary targets read -id ttcp_zzzzzzzzzz
+boundary_test_command =
+
+# Command used to authenticate when boundary_test_command exits nonzero.
+# If empty, establishing the tunnel will fail when not authenticated.
+# If set, boundary_test_command must also be set.
+# Example: boundary authenticate oidc
+boundary_auth_command =
+
 # Custom colors for the completion menu, toolbar, etc, with actual support
 # depending on the terminal, and the property being set.
 # Colors: #ffffff, bg:#ffffff, border:#ffffff.
@@ -348,6 +561,7 @@ emacs_ttimeoutlen = 0.5
 # Completion menus
 completion-menu.completion.current = 'bg:#ffffff #000000'
 completion-menu.completion = 'bg:#008888 #ffffff'
+completion-menu.completion.indexed = 'bg:#008888 #ffffff'
 completion-menu.meta.completion.current = 'bg:#44aaaa #000000'
 completion-menu.meta.completion = 'bg:#448888 #ffffff'
 completion-menu.multi-column-meta = 'bg:#aaffff #000000'
@@ -424,13 +638,38 @@ matching-bracket.other = '#000000 bg:#aacccc'
 
 # Favorite queries.
 # You can add your favorite queries here. They will be available in the
-# REPL when you type `\f` or `\f <query_name>`.
+# REPL when you type `/f` or `/f <query_name>`.
+# Define multiine favorite queries using '''triplequotes'''.
 [favorite_queries]
 # example = "SELECT * FROM example_table WHERE id = 1"
+#
+# Favorite queries can use the Jinja templating language. Named argument
+# values are available as keys in a dictionary named "kv".
+# Run this example templated query with: /f find_user --name=henry
+# Any keys refereed to by name will be available as completions.
+# find_user = "SELECT * FROM users WHERE name = '{{ kv.name }}'"
+#
+# Jinja parameters are optional.
+# Run this example templated query with: /f recent_user --name=henry
+# or alternatively, with different behavior: /f recent_user
+# recent_user = "SELECT * FROM users WHERE create_date >= NOW() - INTERVAL 1 DAY {% if kv.name %} AND name = '{{ kv.name }}' {% endif %}"
+#
+# Since "kv" is a Python dictionary, collisions with existing dictionary
+# methods will require extra syntax, as will keys with internal dashes:
+# example = "SELECT * FROM example_table WHERE id = {{ kv['get'] }}"
+# example = "SELECT * FROM example_table WHERE id = {{ kv['my-id'] }}"
+#
+# Mandatory positional arguments are also supported:
+# Run this example templated query with: /f find_user henry
+# find_user = "SELECT * FROM users WHERE name = '$1'"
+#
+# Plase ambiguous positional arguments after "--":
+# /f find_user -- --unusual-name--
 
 # Initial commands to execute when connecting to any database.
 [init-commands]
 # read_only = "SET SESSION TRANSACTION READ ONLY"
+
 
 # Use the -d option to reference a DSN.
 # Special characters in passwords and other strings can be escaped with URL encoding.
