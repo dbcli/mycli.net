@@ -68,7 +68,7 @@ semicolon.
 * <a name="clip"></a> `<query>\clip`
 
     Send the current statement to the system clipboard.  This is used at the
-    beginning or end of a statement, _e.g._ `select 1\clip`.  At the end of
+    beginning or end of a statement, _e.g._ `SELECT 1\clip`.  At the end of
     a statement, the backslash form `\clip` must be used to avoid a SQL
     ambiguity.
 
@@ -134,12 +134,12 @@ semicolon.
 
     Send the current statement to the server and display the results in the
     default format.  This is used instead of a semicolon terminator, _e.g._
-    `select 1\g`.
+    `SELECT 1\g`.
 
 * <a name="G"></a> `\G`
 
     Send the current statement to the server and display the results vertically.
-    This is used instead of a semicolon terminator, _e.g._ `select 1\G`.
+    This is used instead of a semicolon terminator, _e.g._ `SELECT 1\G`.
 
 * <a name="help"></a> `/help [name]`, `/? [name]`
 
@@ -276,4 +276,4 @@ semicolon.
     Send the current statement to the server and display the results in an
     interactive explorer rather than the default pager.  This is used instead of
     a semicolon terminator, _e.g._
-    `select * from employees\x`.
+    `SELECT * FROM employees\x`.
