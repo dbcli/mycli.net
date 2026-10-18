@@ -31,6 +31,7 @@ contain the following information:
  - Username
  - Password
  - SSL configuration parameters
+ - Prompt string
  - Other per-connection settings such as the character set
 
 If a password is not supplied in a given DSN, you will be prompted to enter a
@@ -43,6 +44,9 @@ Here is an example DSN configuration in `~/.myclirc`:
 [alias_dsn]
 nickname = mysql://my_user@localhost:3306/test_db
 ```
+
+To manipulate DSNs from the REPL, including saving the current connection, see
+`/dsn help`.
 
 When invoking mycli, you can use an aliased DSN by providing the `-d` flag,
 or by just referring to the alias without any flag:
@@ -60,18 +64,18 @@ $ chmod 700 ~/.myclirc
 ```
 
 However, the file is still stored in cleartext, so sensitive passwords are
-best not stored in DSNs literally.
+best _not_ stored in DSNs literally.
 
 ## The System Keyring <a name="keyring"></a>
 
 If the following option is set in `~/.myclirc`:
 
 ```ini
-use_keyring = True
+use_keyring = auto
 ```
 
-then mycli will use your system keyring to store and retrieve passwords
-transparently.
+then (unless you are connecting from a remote over SSH) mycli will use your local
+system keyring to store and retrieve passwords transparently.
 
 This works hand-in-hand with DSN aliases which specify everything but the password
 in the DSN:
@@ -96,6 +100,11 @@ To reset the saved password, use `--use-keyring=reset` on the command line:
 ```bash
 $ mycli --use-keyring=reset nickname
 ```
+
+### Known Keyring Limitations
+
+If "Always Allow" is chosen on Mac, then all local Python applications will
+have access to the saved credential.
 
 </br>
 
